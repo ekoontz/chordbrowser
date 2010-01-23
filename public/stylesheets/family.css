@@ -1,0 +1,94 @@
+@include "chordbrowser.css";
+
+.pre {
+    white-space: pre;
+    font-family:monospace;
+}
+
+.row th {
+    text-align:right;
+    border-right:1px solid black;
+}
+
+
+div.pager {
+    margin-left:10%;
+    width:80%;
+    border:0;
+    padding:0;
+}
+
+div.pager button {
+    width:100%;
+}
+
+div.pager table {
+    width:100%;
+    border:0;
+    text-align:center;
+    margin:0.25em;
+    border:0;
+    font-size:10pt;
+}
+
+div.pager th {
+    padding:0.25em;
+}
+
+th.left {
+    text-align:left;
+    width:10%;
+}
+
+th.right {
+    text-align:right;
+    width:10%;
+}
+
+div.sql_form {
+    width:50%;
+    border:0;
+    background: white;
+}
+
+div.sql_form table {
+    width:100%;
+    border:0;
+}
+
+div.sql_form td {
+    width:auto;
+    border-bottom:1px dashed green;
+    border-right:1px dashed green;
+    border-top:1px dashed green;
+    white-space:pre;
+}
+
+div.sql_form th {
+    background:#eee;
+    width:30%;
+    padding:0.125em;
+    text-align:right;
+}
+
+div.submit {
+    border:0;
+    background:transparent;
+    width:auto;
+    float:right;
+    padding:0;
+    margin:0;
+}
+
+div.form_code_elem {
+    padding:3px;
+    border:1px solid black;
+}
+
+div.form_code_elem table {
+    border:0px;
+}
+
+div.form_code_elem td {
+    border:0px;
+}
