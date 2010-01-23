@@ -30,24 +30,8 @@
         <script type="text/javascript" src="/javascripts/jquery.js">
 	</script>
       </head>
-      <body onload="{$onload}; onload_app();">
-	<div class="header">
-	  <xsl:apply-templates select="." mode="header"/>
-	  <div style="padding:0;margin;0;border:0;float:right">
-	    <a href="?output=xml" id="as_xml_url">
-	    [as xml]
-	    </a>
-	  </div>
-	</div>
-	<div>
-	  <xsl:apply-templates select="." mode="body"/>
-	</div>
-	
-	<div class="xml_iframe">
-	  <iframe id="as_xml_iframe" height="500" width="100%" src="?output=xml"/>
-	</div>
-      </body>
-    </html>
+      <xsl:apply-templates select="." mode="body"/>
+	    </html>
   </xsl:template>
 
   <xsl:template match="*" mode="css">
@@ -83,7 +67,27 @@
   </xsl:template>
 
   <xsl:template match="*" mode="body">
-    page.xsl default body
+    <body onload="{$onload}; onload_app();">
+      <div class="header">
+	<xsl:apply-templates select="." mode="header"/>
+	<div style="padding:0;margin;0;border:0;float:right">
+	  <a href="?output=xml" id="as_xml_url">
+	    [as xml]
+	  </a>
+	</div>
+      </div>
+      <div>
+	<xsl:apply-templates select="." mode="body"/>
+      </div>
+      
+    </body>
+
+  </xsl:template>
+
+  <xsl:template match="*" mode="xml_iframe">
+    <div class="xml_iframe">
+      <iframe id="as_xml_iframe" height="500" width="100%" src="?output=xml"/>
+    </div>
   </xsl:template>
 
   <xsl:template match="*" mode="dropdown">

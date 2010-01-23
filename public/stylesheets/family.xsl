@@ -17,9 +17,36 @@
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>
   </xsl:template>
-  
-  <xsl:template match="family">
-    <h2>Chord Family:</h2>
+
+
+  <xsl:template match="*" mode="title">
+    <title>Chordbrowser: Chord Family C#</title>
+  </xsl:template>
+
+
+  <xsl:template match="family" mode="header">
+    <div>
+      <h2>Chord Family: C#</h2>
+      <xsl:apply-templates/>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="family" mode="body">
+    <body>
+      <div style="float:left;width:100%">
+	<h2>Chords in this family:</h2>
+	
+	<ul>
+	  <li>C#</li>
+	  <li>C#7</li>
+	  <li>C#min</li>
+	</ul>
+	Choose another chord family...
+      </div>
+
+      <xsl:apply-templates select="." mode="xml_iframe"/>
+
+    </body>
   </xsl:template>
 
 </xsl:stylesheet>
