@@ -31,7 +31,7 @@
     </div>
   </xsl:template>
 
-  <xsl:template match="family" mode="body">
+  <xsl:template match="family" mode="bodyx">
     <body>
       <div style="float:left;width:100%">
 	<h2>Chords in this family:</h2>
