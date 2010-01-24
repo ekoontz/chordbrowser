@@ -8,10 +8,6 @@
 	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
 	      doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"/>
 
-  <xsl:param name="format"/>
-  <xsl:param name="table"/>
-  <xsl:param name="expression_id"/>
-
   <xsl:include href="/home/ekoontz/chordbrowser/public/stylesheets/page.xsl"/>
 
   <xsl:template match="/">
@@ -19,19 +15,11 @@
   </xsl:template>
 
 
-  <xsl:template match="*" mode="titlex">
+  <xsl:template match="*" mode="title">
     <title>Chordbrowser: Chord Family C#</title>
   </xsl:template>
 
-
-  <xsl:template match="family" mode="headerx">
-    <div>
-      <h2>Chord Family: C#</h2>
-      <xsl:apply-templates/>
-    </div>
-  </xsl:template>
-
-  <xsl:template match="family" mode="bodyx">
+  <xsl:template match="family" mode="body">
     <body>
       <div style="float:left;width:100%">
 	<h2>Chords in this family:</h2>
@@ -42,11 +30,22 @@
 	  <li>C#min</li>
 	</ul>
 	Choose another chord family...
+
+
+	<xsl:apply-templates select="." mode="xml_iframe"/>
+
+
       </div>
 
-      <xsl:apply-templates select="." mode="xml_iframe"/>
 
     </body>
   </xsl:template>
+
+  <xsl:template match="*" mode="xml_iframe">
+    <div class="xml_iframe" style="float:right;width:50%">
+      <iframe height="300" width="300" id="as_xml_iframe" src="?output=xml"/>
+    </div>
+  </xsl:template>
+
 
 </xsl:stylesheet>
