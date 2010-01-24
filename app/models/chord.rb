@@ -1,7 +1,7 @@
 class Chord < ActiveRecord::Base
 
-  def Chord::export(xml)
-    for chord in find(:all,:order=>"name")
+  def Chord::export(xml,conditions = "")
+    for chord in find(:all,:order=>"name",:conditions=>conditions)
       chord.export(xml)
     end
   end

@@ -7,6 +7,7 @@ div.content {
 div.family {
     float:left;
     border:0px dashed green;
+    width:50%;
 }
 
 h2 {
