@@ -19,19 +19,19 @@
   </xsl:template>
 
 
-  <xsl:template match="*" mode="title">
+  <xsl:template match="*" mode="titlex">
     <title>Chordbrowser: Chord Family C#</title>
   </xsl:template>
 
 
-  <xsl:template match="family" mode="header">
+  <xsl:template match="family" mode="headerx">
     <div>
       <h2>Chord Family: C#</h2>
       <xsl:apply-templates/>
     </div>
   </xsl:template>
 
-  <xsl:template match="family" mode="body">
+  <xsl:template match="family" mode="bodyx">
     <body>
       <div style="float:left;width:100%">
 	<h2>Chords in this family:</h2>
