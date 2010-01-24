@@ -43,7 +43,7 @@
 
   <xsl:template match="*" mode="xml_iframe">
     <div class="xml_iframe" style="float:right;width:50%">
-      <iframe height="300" width="300" id="as_xml_iframe" src="?output=xml"/>
+      <iframe height="300" width="400" id="as_xml_iframe" src="?output=xml"/>
     </div>
   </xsl:template>
 
