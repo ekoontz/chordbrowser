@@ -24,6 +24,7 @@
 	<xsl:apply-templates select="." mode="meta"/>
 	<xsl:apply-templates select="." mode="title"/>
 	<xsl:apply-templates select="." mode="style"/>
+	<xsl:apply-templates select="." mode="external_css"/>
 	<xsl:apply-templates select="." mode="script"/>
       </head>
       <xsl:apply-templates select="." mode="body"/>
@@ -60,6 +61,8 @@
     </script>
   </xsl:template>
 
+
+  <xsl:template match="*" mode="external_css"/>
 
   <xsl:template match="*" mode="style">
     <style type="text/css" media="screen">

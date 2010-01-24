@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     else
       xslt = XML::XSLT.new()
       xslt.xml = @xml
-      xslt.xsl = File.read("public/stylesheets/family.xsl")
+      xslt.xsl = File.read(xsl)
       @out = xslt.serve()
       render :xml => @out
     end

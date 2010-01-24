@@ -1,3 +1,36 @@
-thead.nut {
-    background: green;
+div.chord {
+    float:left;
+    margin:0.25em;
+    width:10em;
+    padding:0.5em;
+}
+
+div.chord h2 {
+    text-align:center;
+}
+
+table.chord {
+    border-collapse:collapse;
+}
+
+thead.chord th {
+    width:1em;
+}
+
+
+tbody.chord th {
+    border-right:1px solid black;
+    width:1em;
+}
+
+th.nut {
+    font-size:5pt;
+    background:black;
+    color:white;
+}
+
+table.chord td {
+    width:1em;
+    border-bottom:1px solid black;
+    border-right:1px solid black;
 }
