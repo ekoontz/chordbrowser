@@ -341,10 +341,11 @@
   </xsl:template>
 
   <xsl:template match="*" mode="xml_iframe">
-    <div class="xml_iframe">
-      <iframe id="as_xml_iframe" height="500" width="100%" src="?output=xml"/>
+    <div class="xml_iframe" style="float:right;width:50%">
+      <iframe src="?output=xml"/>
     </div>
   </xsl:template>
+
 
   <xsl:template match="*" mode="dropdown">
     <xsl:param name="top"/>
