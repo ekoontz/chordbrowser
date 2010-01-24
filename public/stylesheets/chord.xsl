@@ -42,6 +42,7 @@
 	  <xsl:apply-templates select="fret[@number = '1']"/>
 	  <xsl:apply-templates select="fret[@number = '2']"/>
 	  <xsl:apply-templates select="fret[@number = '3']"/>
+	  <xsl:apply-templates select="fret[@number = '4']"/>
 	</tbody>
       </table>
     </div>

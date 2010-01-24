@@ -6,6 +6,8 @@ div.chord {
 }
 
 div.chord h2 {
+    padding:0;
+    width:100%;
     text-align:center;
 }
 
