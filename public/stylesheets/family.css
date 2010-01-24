@@ -1,6 +1,12 @@
 div.content {
+    width:100%;
     float:left;
     border: 0px dashed green;
+}
+
+div.family {
+    float:left;
+    border:0px dashed green;
 }
 
 h2 {
