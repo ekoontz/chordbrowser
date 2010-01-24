@@ -9,8 +9,12 @@ class FamilyController < ApplicationController
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
 
     now = Time.now
-    # fixme: add page load time (Time.now minus request_start_time)
-    xml.family(:time => now)  {
+    xml.families(:time => now)  {
+      for family in Family::find(:all,:order=>"name")
+        xml.family(:name => family.name) {
+          Chord::export(xml)
+        }
+      end
     }
 
     render_xsl(@xml,"public/stylesheets/family.xsl")

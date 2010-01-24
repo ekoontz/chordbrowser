@@ -15,10 +15,19 @@
   </xsl:template>
 
   <xsl:template match="*" mode="title">
-    <title>Chordbrowser: Chord Family: C#</title>
+    <title>Chordbrowser</title>
+  </xsl:template>
+
+  <xsl:template match="*" mode="menu">
+    <div class="menu">
+      <h2><a href="/family">Families</a></h2>
+      <h2>Chords</h2>
+      <h2>Songs</h2>
+    </div>
   </xsl:template>
 
   <xsl:template match="*" mode="external_css">
+    <link rel="stylesheet" href="/stylesheets/family.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/chord.css" type="text/css"/>
   </xsl:template>
 
@@ -26,7 +35,11 @@
     <body style="padding:1%">
       <h1>Chordbrowser</h1>
 
-      <xsl:apply-templates select="chord"/>
+      <xsl:apply-templates select="." mode="menu"/>
+
+      <div class="content">
+	<xsl:apply-templates select="chord"/>
+      </div>
 
       <div style="float:left;width:95%;margin-left:5%">
 	<xsl:apply-templates select="." mode="xml_iframe"/>
