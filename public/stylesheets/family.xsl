@@ -16,12 +16,13 @@
 
 
   <xsl:template match="*" mode="title">
-    <title>Chordbrowser: Chord Family C#</title>
+    <title>Chordbrowser: Chord Family: C#</title>
   </xsl:template>
 
   <xsl:template match="family" mode="body">
-    <body>
-      <div style="float:left;width:100%">
+    <body style="padding:1%">
+      <h1>Chordbrowser: Chord Family: C#</h1>
+      <div style="float:left;width:95%;margin-left:5%">
 	<h2>Chords in this family:</h2>
 	
 	<ul>
