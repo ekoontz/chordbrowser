@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-      <!DOCTYPE stylesheet [
+<!DOCTYPE stylesheet [
 <!ENTITY nbsp "&#160;">
 <!ENTITY rsquo "&#8217;">
 ]>
@@ -12,9 +12,9 @@
 	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
 	      doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"/>
 
-  <xsl:param name="format"/>
-
   <xsl:include href="table.xsl"/>
+
+  <xsl:param name="format"/>
 
   <xsl:template match="/" mode="page">
     <xsl:param name="title" select="'untitled'"/>

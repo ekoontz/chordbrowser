@@ -8,7 +8,7 @@
 	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
 	      doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"/>
 
-  <xsl:include href="/home/ekoontz/chordbrowser/public/stylesheets/page.xsl"/>
+  <xsl:include href="page.xsl"/>
 
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>

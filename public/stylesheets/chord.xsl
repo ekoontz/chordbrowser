@@ -4,7 +4,7 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="1.0">
 
-  <xsl:include href="/home/ekoontz/chordbrowser/public/stylesheets/chordbrowser.xsl"/>
+  <xsl:include href="public/stylesheets/chordbrowser.xsl"/>
 
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>
