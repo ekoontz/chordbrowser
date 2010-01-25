@@ -48,7 +48,7 @@
 
       <div class="colophon">
 	<div>
-	  <a href="mailto:ekoontz@hiro-tan.org">ekoontz@hiro-tan.org</a>
+	  by Eugene Koontz &lt;<a href="mailto:ekoontz@hiro-tan.org">ekoontz@hiro-tan.org</a>&gt;
 	</div>
 	<div>
 	  <a href="http://wiki.github.com/ekoontz/chordbrowser/">Source Code</a>
