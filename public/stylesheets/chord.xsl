@@ -4,8 +4,6 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="1.0">
 
-  <xsl:include href="chordbrowser.xsl"/>
-
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>
   </xsl:template>

@@ -4,7 +4,8 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="1.0">
 
-   <xsl:include href="public/stylesheets/chord.xsl"/>
+  <xsl:include href="public/stylesheets/chordbrowser.xsl"/>
+  <xsl:include href="public/stylesheets/chord.xsl"/>
 
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>
@@ -18,6 +19,9 @@
     <div class="family">
       <h2><a href="/family/view/{@name}"><xsl:value-of select="@name"/></a></h2>
       <xsl:apply-templates select="chord"/>
+      <div style="float:left;width:100%">
+	<a href="/family/newchord/{@name}">add a new chord to this family</a>
+      </div>
     </div>
 
   </xsl:template>

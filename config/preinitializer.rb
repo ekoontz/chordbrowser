@@ -1,4 +1,5 @@
 require "#{File.dirname(__FILE__)}/../vendor/bundler_gems/environment"
+require 'bundler'
  
 class Rails::Boot
   def run
@@ -11,7 +12,7 @@ class Rails::Boot
     Rails::Initializer.class_eval do
       old_load = instance_method(:load_environment)
       define_method(:load_environment) do
-        Bundler.require_env RAILS_ENV
+#        Bundler.require_env RAILS_ENV
         old_load.bind(self).call
       end
     end
