@@ -10,14 +10,6 @@
     <xsl:apply-templates select="." mode="page"/>
   </xsl:template>
 
-  <xsl:template match="*" mode="menux">
-    <div class="menu">
-      <h2>Families</h2>
-      <h2><a href="/chord">Chords</a></h2>
-      <h2><a href="/song">Songs</a></h2>
-    </div>
-  </xsl:template>
-
   <xsl:template match="families">
     <xsl:apply-templates/>
   </xsl:template>
