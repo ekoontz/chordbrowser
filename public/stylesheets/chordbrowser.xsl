@@ -27,6 +27,7 @@
   </xsl:template>
 
   <xsl:template match="*" mode="external_css">
+    <link rel="stylesheet" href="/stylesheets/chordbrowser.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/family.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/chord.css" type="text/css"/>
   </xsl:template>
@@ -43,6 +44,15 @@
 
       <div style="float:left;width:95%;margin-left:5%">
 	<xsl:apply-templates select="." mode="xml_iframe"/>
+      </div>
+
+      <div class="colophon">
+	<div>
+	  <a href="mailto:ekoontz@hiro-tan.org">ekoontz@hiro-tan.org</a>
+	</div>
+	<div>
+	  <a href="http://wiki.github.com/ekoontz/chordbrowser/">Source Code</a>
+	</div>
       </div>
 
     </body>
