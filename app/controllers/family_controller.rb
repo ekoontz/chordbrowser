@@ -1,7 +1,7 @@
 class FamilyController < ApplicationController
 
   def index
-
+    # show all families
     @xml = ""
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
 
@@ -18,7 +18,7 @@ class FamilyController < ApplicationController
   end
 
   def view
-
+    # show one family
     @xml = ""
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
 
@@ -47,10 +47,20 @@ class FamilyController < ApplicationController
         xml.family(:name => family.name) {
           Chord::export(xml,"family='"+params[:id]+"'")
         }
+        xml.edit {
+          xml.chord {
+            xml.fret(:number => "nut")
+            xml.fret(:number => "1") 
+            xml.fret(:number => "2") 
+            xml.fret(:number => "3") 
+            xml.fret(:number => "4") 
+          }
+        }
       end
     }
 
-    render_xsl(@xml,"public/stylesheets/family.xsl")
+    render_xsl(@xml,"public/stylesheets/family.xsl",
+               {"action" => "new"})
     
   end
 
