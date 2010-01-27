@@ -29,7 +29,7 @@
 	  <xsl:when test="$action = 'new'">
 	    <form method="post">
 	      <div style="float:left;border:2px dashed #f0f0f0;padding:0.25em;margin:0.25em">
-		<h3>Add a new chord to the <b><xsl:value-of select="@name"/></b> family:</h3>
+		<h3>Add a new chord to the '<b><xsl:value-of select="@name"/></b>' family:</h3>
 		<xsl:apply-templates select="../edit/chord"/>
 		<div style="float:right;text-align:right;width:100%">
 		  <input type="submit" value="Add Chord"/>
