@@ -1,8 +1,13 @@
+div.chords {
+    float:right;
+}
+
 div.chord {
-    float:left;
+    border:0px dashed green;
+    float:right;
     margin:0.25em;
     width:10em;
-    padding:0.5em;
+    padding:0.5m;
 }
 
 div.chord h2 {

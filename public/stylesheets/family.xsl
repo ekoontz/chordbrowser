@@ -18,7 +18,9 @@
   <xsl:template match="family">
     <div class="family">
       <h2><a href="/family/view/{@name}"><xsl:value-of select="@name"/></a></h2>
-      <xsl:apply-templates select="chord"/>
+      <div class="chords">
+	<xsl:apply-templates select="chord"/>
+      </div>
       <div style="float:left;width:100%">
 	<a href="/family/newchord/{@name}">add a new chord to this family</a>
       </div>

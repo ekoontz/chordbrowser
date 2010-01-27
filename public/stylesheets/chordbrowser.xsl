@@ -40,7 +40,7 @@
 	<xsl:apply-templates select="."/>
       </div>
 
-      <div style="float:left;width:95%;margin-left:5%">
+      <div style="position:fixed;right:150px;top:0;">
 	<xsl:apply-templates select="." mode="xml_iframe"/>
       </div>
 

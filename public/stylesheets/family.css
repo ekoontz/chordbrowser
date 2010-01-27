@@ -10,9 +10,15 @@ div.content {
 }
 
 div.family {
+    margin:1em;
     float:left;
-    border:0px dashed green;
+    border:2px solid #f0f0f0;
     width:50%;
+}
+
+div.family h2 {
+    width:40%;
+    float:left;
 }
 
 h2 {

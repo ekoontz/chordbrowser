@@ -1,5 +1,5 @@
 require "#{File.dirname(__FILE__)}/../vendor/bundler_gems/environment"
-require 'bundler'
+#require 'bundler'
  
 class Rails::Boot
   def run
