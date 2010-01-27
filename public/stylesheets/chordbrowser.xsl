@@ -45,7 +45,7 @@
       </div>
 
       <div class="colophon">
-	<div>
+	<div style="whitespace:nowrap">
 	  by Eugene Koontz &lt;<a href="mailto:ekoontz@hiro-tan.org">ekoontz@hiro-tan.org</a>&gt;
 	</div>
 	<div>
