@@ -14,7 +14,7 @@
   </xsl:template>
 
   <xsl:template match="families">
-    <xsl:apply-templates/>
+    <xsl:apply-templates select="family"/>
   </xsl:template>
 
   <xsl:template match="family">
@@ -27,10 +27,12 @@
       <div style="float:left;width:100%">
 	<xsl:choose>
 	  <xsl:when test="$action = 'new'">
-	    <form method="post">
-	      <div style="float:left;border:2px dashed #f0f0f0;padding:0.25em;margin:0.25em">
+	    <form method="post" action="?">
+	      <div style="float:left;border:2px dashed #f0f0f0;padding:1.5em;margin:0.25em">
 		<h3>Add a new chord to the '<b><xsl:value-of select="@name"/></b>' family:</h3>
-		<xsl:apply-templates select="../edit/chord"/>
+		<div style="float:left">
+		  <xsl:apply-templates select="../edit/chord"/>
+		</div>
 		<div style="float:right;text-align:right;width:100%">
 		  <input type="submit" value="Add Chord"/>
 		</div>
