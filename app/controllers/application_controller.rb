@@ -5,7 +5,7 @@ require 'xml/xslt'
 
 class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+#  protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
  before_filter :set_content_type
  
@@ -25,6 +25,15 @@ class ApplicationController < ActionController::Base
       xslt = XML::XSLT.new()
       xslt.xml = @xml
       xslt.xsl = File.read(xsl)
+
+      logger.info("render.xsl: xsl: " + xsl)
+      xsl_params['request_forgery_protection_token'] = 
+        self.request_forgery_protection_token.to_s
+
+      # Does not work yet because of single quotes(') in token.
+      # adding a single quote to end of input value in : public/stylesheets/family.xsl.
+      xsl_params['form_authenticity_token'] = 
+        self.form_authenticity_token.gsub(/\'/,"")
 
       xslt.parameters = xsl_params.clone
 

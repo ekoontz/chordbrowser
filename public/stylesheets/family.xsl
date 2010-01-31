@@ -27,10 +27,18 @@
       <div style="float:left;width:100%">
 	<xsl:choose>
 	  <xsl:when test="$action = 'new'">
-	    <form method="post" action="?">
+	    <form method="post" action="/family/view/{@name}">
 	      <div style="float:left;border:2px solid #f0f0f0;padding:1.5em;margin:0.25em">
+		<input type="hidden" name="fret_action" value="insert"/>
+		<input type="hidden" name="{$request_forgery_protection_token}" value="{$form_authenticity_token}"/>
+		<input type="hidden" name="family" value="{@name}"/>
 		<h3 style="padding:0;margin:0">Add a new chord to the '<b><xsl:value-of select="@name"/></b>' family:</h3>
-		<div style="float:left">
+		<div>
+		  <label for="chord_name">Chord name:</label>
+		  <input id="chord_name" name="name" size="4"/>
+		</div>
+		
+		<div style="float:left;">
 		  <xsl:apply-templates select="../edit/chord"/>
 		</div>
 		<div style="float:right;text-align:right;width:100%">

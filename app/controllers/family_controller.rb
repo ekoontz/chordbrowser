@@ -32,6 +32,32 @@ class FamilyController < ApplicationController
       end
     }
 
+    if (self.params['fret_action'] == "insert") 
+      newchord = Chord.new
+      newchord.family = self.params['family']
+      newchord.name = self.params['name']
+      newchord.save
+
+
+      ["nut",1,2,3,4].each do |fret|
+        newfret = Fret.new
+        newfret.number = fret
+        newfret.chord = newchord.name
+        
+        newfret.e_low = self.params['fret'][fret.to_s]['e_low']
+        newfret.a = self.params['fret'][fret.to_s]['a']
+        newfret.d = self.params['fret'][fret.to_s]['d']
+        newfret.g = self.params['fret'][fret.to_s]['g']
+        newfret.b = self.params['fret'][fret.to_s]['b']
+        newfret.e = self.params['fret'][fret.to_s]['e']
+
+        newfret.save
+
+      end
+
+    end
+
+
     render_xsl(@xml,"public/stylesheets/family.xsl")
   end
 

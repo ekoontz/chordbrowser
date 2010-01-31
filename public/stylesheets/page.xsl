@@ -16,6 +16,8 @@
   <xsl:include href="table.xsl"/>
 
   <xsl:param name="format"/>
+  <xsl:param name="request_forgery_protection_token"/>
+  <xsl:param name="form_authenticity_token"/>
 
   <xsl:template match="/" mode="page">
     <xsl:param name="title" select="'untitled'"/>

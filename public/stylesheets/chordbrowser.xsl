@@ -33,7 +33,6 @@
   <xsl:template match="*" mode="body">
     <body style="padding:1%">
       <h1>Chordbrowser</h1>
-
       <xsl:apply-templates select="." mode="menu"/>
 
       <div class="content">

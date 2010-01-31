@@ -69,13 +69,13 @@
   </xsl:template>
 
   <xsl:template match="edit/chord/fret/@*" mode="nut">
-    <select name="nut[{name()}]">
+    <select name="fret[nut][{name()}]]">
       <option/>
       <option>
 	<xsl:if test=". = 'x'">
 	  <xsl:attribute name="selected">selected</xsl:attribute>
 	</xsl:if>x</option>
-      <option>
+      <option value="open">
 	<xsl:if test=". = 'open'">
 	  <xsl:attribute name="selected">selected</xsl:attribute>
 	</xsl:if>o</option>
