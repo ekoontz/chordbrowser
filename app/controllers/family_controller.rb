@@ -49,46 +49,17 @@ class FamilyController < ApplicationController
         }
         xml.edit {
           xml.chord {
-            xml.fret(:number => "nut",
-                     :e_low => "open",
-                     :a => "open",
-                     :d => "open",
-                     :g => "open",
-                     :b => "open",
-                     :e => "open"
-                     )
 
-            xml.fret(:number => "1",
-                     :e_low => "",
-                     :a => "",
-                     :d => "",
-                     :g => "",
-                     :b => "",
-                     :e => "")
+            ["nut",1,2,3,4].each do |fret|
+              xml.fret(:number => fret,
+                       :e_low => "",
+                       :a => "",
+                       :d => "",
+                       :g => "",
+                       :b => "",
+                       :e => "")
+            end
 
-            xml.fret(:number => "2",
-                     :e_low => "",
-                     :a => "",
-                     :d => "",
-                     :g => "",
-                     :b => "",
-                     :e => "")
-
-            xml.fret(:number => "3",
-                     :e_low => "",
-                     :a => "",
-                     :d => "",
-                     :g => "",
-                     :b => "",
-                     :e => "")
-
-            xml.fret(:number => "4",
-                     :e_low => "",
-                     :a => "",
-                     :d => "",
-                     :g => "",
-                     :b => "",
-                     :e => "")
 
 
           }
