@@ -72,6 +72,14 @@ class FamilyController < ApplicationController
         xml.family(:name => family.name) {
           Chord::export(xml,"family='"+params[:id]+"'")
         }
+
+        # used by XSLT to construct form for new (or eventually edit) chord.
+        xml.chord_attributes {
+          for chord_attribute in ChordAttribute::find(:all) 
+            xml.chord_attribute(:name => chord_attribute.name)
+          end
+        }
+
         xml.edit {
           xml.chord {
 

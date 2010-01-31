@@ -37,6 +37,9 @@
 		  <label for="chord_name">Chord name:</label>
 		  <input id="chord_name" name="name" size="4"/>
 		</div>
+
+		<xsl:apply-templates select="ancestor::families/chord_attributes" 
+				     mode="checkboxes"/>
 		
 		<div style="float:left;">
 		  <xsl:apply-templates select="../edit/chord"/>
@@ -54,6 +57,17 @@
       </div>
     </div>
 
+  </xsl:template>
+
+  <xsl:template match="chord_attributes" mode="checkboxes">
+    <div>
+      <xsl:apply-templates mode="checkbox"/>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="chord_attribute" mode="checkbox">
+    <label for="attr_{@name}"><xsl:value-of select="@name"/></label>
+    <input id="attr_{@name}" type="checkbox" name="{@name}"/>
   </xsl:template>
 
 </xsl:stylesheet>
