@@ -55,13 +55,12 @@ class FamilyController < ApplicationController
 
       end
 
-      ["7","6","min","dim","sus"].each do |attrib|
+      for attrib in ChordAttributes::find(:all)
         if self.params['attrib'][attrib] == "on"
           # .. create link 
           # 
         end
       end
-
 
     end
 
