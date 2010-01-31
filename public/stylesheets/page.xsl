@@ -345,9 +345,7 @@
   </xsl:template>
 
   <xsl:template match="*" mode="xml_iframe">
-    <div class="xml_iframe" style="float:right;width:50%">
-      <iframe src="?output=xml" width="200px" height="400px"/>
-    </div>
+      <iframe src="?output=xml" width="600px" height="20em"/>
   </xsl:template>
 
 

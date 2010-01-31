@@ -28,8 +28,8 @@
 	<xsl:choose>
 	  <xsl:when test="$action = 'new'">
 	    <form method="post" action="?">
-	      <div style="float:left;border:2px dashed #f0f0f0;padding:1.5em;margin:0.25em">
-		<h3>Add a new chord to the '<b><xsl:value-of select="@name"/></b>' family:</h3>
+	      <div style="float:left;border:2px solid #f0f0f0;padding:1.5em;margin:0.25em">
+		<h3 style="padding:0;margin:0">Add a new chord to the '<b><xsl:value-of select="@name"/></b>' family:</h3>
 		<div style="float:left">
 		  <xsl:apply-templates select="../edit/chord"/>
 		</div>

@@ -30,9 +30,7 @@
 	</thead>
 	<tbody class="chord">
 	  <xsl:apply-templates select="fret[@number = '1']"/>
-	  <xsl:apply-templates select="fret[@number = '2']"/>
-	  <xsl:apply-templates select="fret[@number = '3']"/>
-	  <xsl:apply-templates select="fret[@number = '4']"/>
+	  <xsl:apply-templates select="fret[@number &gt; '1']"/>
 	</tbody>
       </table>
     </div>
@@ -71,19 +69,16 @@
   </xsl:template>
 
   <xsl:template match="edit/chord/fret/@*" mode="nut">
-    <select>
+    <select name="nut[{name()}]">
       <option/>
       <option>
 	<xsl:if test=". = 'x'">
 	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>
-	x
-      </option>
+	</xsl:if>x</option>
       <option>
 	<xsl:if test=". = 'open'">
 	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>
-	o</option>
+	</xsl:if>o</option>
     </select>
   </xsl:template>
 
@@ -130,14 +125,13 @@
   </xsl:template>
 
   <xsl:template match="edit/chord/fret/@*" mode="fret">
-    <select>
+    <select name="fret[{../@number}][{name()}]">
       <option/>
       <option>1</option>
       <option>2</option>
       <option>3</option>
       <option>4</option>
     </select>
-      
   </xsl:template>
 
 
