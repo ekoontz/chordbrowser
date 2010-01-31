@@ -33,6 +33,7 @@ class FamilyController < ApplicationController
     }
 
     if (self.params['fret_action'] == "insert") 
+
       newchord = Chord.new
       newchord.family = self.params['family']
       newchord.name = self.params['name']
@@ -53,6 +54,14 @@ class FamilyController < ApplicationController
         newfret.save
 
       end
+
+      ["7","6","min","dim","sus"].each do |attrib|
+        if self.params['attrib'][attrib] == "on"
+          # .. create link 
+          # 
+        end
+      end
+
 
     end
 

@@ -67,7 +67,7 @@
 
   <xsl:template match="chord_attribute" mode="checkbox">
     <label for="attr_{@name}"><xsl:value-of select="@name"/></label>
-    <input id="attr_{@name}" type="checkbox" name="{@name}"/>
+    <input id="attr_{@name}" type="checkbox" name="attrib[{@name}]"/>
   </xsl:template>
 
 </xsl:stylesheet>
