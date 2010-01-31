@@ -38,11 +38,10 @@ class FamilyController < ApplicationController
       newchord.name = self.params['name']
       newchord.save
 
-
       ["nut",1,2,3,4].each do |fret|
         newfret = Fret.new
         newfret.number = fret
-        newfret.chord = newchord.name
+        newfret.chord_id = newchord.id
         
         newfret.e_low = self.params['fret'][fret.to_s]['e_low']
         newfret.a = self.params['fret'][fret.to_s]['a']

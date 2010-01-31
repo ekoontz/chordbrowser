@@ -10,7 +10,7 @@ class Chord < ActiveRecord::Base
     xml.chord(:name => name,
               :family => family
               ) {
-      @frets = Fret::find(:all,:conditions => "chord='"+self.name+"'")
+      @frets = Fret::find(:all,:conditions => "chord_id='"+self.id.to_s+"'")
       for fret in @frets
         xml.fret(:number => fret.number,
                  :e_low => fret.e_low,
