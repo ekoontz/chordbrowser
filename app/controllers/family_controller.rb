@@ -55,8 +55,9 @@ class FamilyController < ApplicationController
 
       end
 
-      for attrib in ChordAttributes::find(:all)
+      for attrib in ChordAttribute::find(:all)
         if self.params['attrib'][attrib] == "on"
+          logger.info("attribute: " + attrib + " checked.")
           # .. create link 
           # 
         end
