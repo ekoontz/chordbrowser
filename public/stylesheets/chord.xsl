@@ -15,7 +15,7 @@
   <xsl:template match="chord">
     <div class="chord">
       <xsl:if test="@name">
-	<h2><xsl:value-of select="@name"/></h2>
+	<h2><xsl:value-of select="@name"/></h2><a href="/chord/edit/{@name}">[edit]</a>
       </xsl:if>
       <table class="chord">
 	<thead>
