@@ -8,7 +8,8 @@ class Chord < ActiveRecord::Base
 
   def export(xml)
     xml.chord(:name => name,
-              :family => family
+              :family => family,
+              :id => id
               ) {
       @frets = Fret::find(:all,:conditions => "chord_id='"+self.id.to_s+"'")
       for fret in @frets

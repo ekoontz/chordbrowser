@@ -56,11 +56,32 @@ class FamilyController < ApplicationController
       end
 
       for attrib in ChordAttribute::find(:all)
-        if self.params['attrib'][attrib] == "on"
-          logger.info("attribute: " + attrib + " checked.")
-          # .. create link 
-          # 
+
+        logger.info("checking attribute: " + attrib.name + ".")
+
+        if self.params['attrib'][attrib.name] == "on"
+          logger.info("attribute: " + attrib.name + " checked.")
+
+          # link chord (e.g. 'C#sus4') with attribute (e.g. 'sus4')
+
+          link = ChordToChordAttrib.new
+
+
+          link.chord_id = newchord.id
+
+          debugger
+
+          attribs = ChordAttribute::find(:all,
+                                         :conditions => ("name='"+self.params['attrib'][attrib.name]+"'"))
+          set_attrib = attribs[0]
+
+          link.attrib_id = set_attrib.id
+        else
+          logger.info("done checking attribute: " + attrib.name + ".")          
         end
+
+
+
       end
 
     end

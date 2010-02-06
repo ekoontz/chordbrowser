@@ -15,7 +15,16 @@
   <xsl:template match="chord">
     <div class="chord">
       <xsl:if test="@name">
-	<h2><xsl:value-of select="@name"/></h2><a href="/chord/edit/{@name}">[edit]</a>
+	<h2><xsl:value-of select="@name"/></h2>
+	<div style="float:left;width:auto">
+	  <a href="/chord/edit/{@name}">[edit]</a>
+	</div>
+	<form method="post" action="/chord/delete/{@id}">
+	  <div style="float:right">
+	    <input onclick="if (confirm('Delete this chord({@id})?')) submit(); else return false;" type="submit" value="Delete"/>
+	  </div>
+	</form>
+
       </xsl:if>
       <table class="chord">
 	<thead>
