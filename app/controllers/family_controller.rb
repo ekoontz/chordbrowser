@@ -7,7 +7,7 @@ class FamilyController < ApplicationController
 
     xml.families(:time => Time.now)  {
       for family in Family::find(:all,:order=>"name")
-        xml.family(:name => family.name) {
+        xml.family(:name => family.name,:id=>family.id) {
           Chord::export(xml,"family='"+family.name+"'")
         }
       end
@@ -98,8 +98,8 @@ class FamilyController < ApplicationController
     xml.families(:time => Time.now)  {
       for family in Family::find(
                                  :all,
-                                 :conditions => ("name='" + params[:id] + "'"))
-        xml.family(:name => family.name) {
+                                 :conditions => ("id='" + params[:id] + "'"))
+        xml.family(:name => family.name, :id => family.id) {
           Chord::export(xml,"family='"+params[:id]+"'")
         }
 

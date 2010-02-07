@@ -17,7 +17,7 @@
       <xsl:if test="@name">
 	<h2><xsl:value-of select="@name"/></h2>
 	<div style="float:left;width:auto">
-	  <a href="/chord/edit/{@name}">[edit]</a>
+	  <a href="/chord/edit/{@id}">[edit]</a>
 	</div>
 	<form method="post" action="/chord/delete/{@id}">
 	  <div style="float:right">

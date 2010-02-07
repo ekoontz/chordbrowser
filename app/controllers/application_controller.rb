@@ -20,10 +20,10 @@ class ApplicationController < ActionController::Base
 
   def render_xsl(xml,xsl,xsl_params = Hash.new)
     if self.params["output"] == "xml"
-      render :xml => @xml
+      render :xml => xml
     else
       xslt = XML::XSLT.new()
-      xslt.xml = @xml
+      xslt.xml = xml
       xslt.xsl = File.read(xsl)
 
       logger.info("render.xsl: xsl: " + xsl)
@@ -38,6 +38,8 @@ class ApplicationController < ActionController::Base
       xslt.parameters = xsl_params.clone
 
       @out = xslt.serve()
+
+      self.response.headers["Cache-control"] = "no-cache"
       render :xml => @out
     end
 

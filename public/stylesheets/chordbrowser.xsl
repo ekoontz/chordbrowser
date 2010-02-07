@@ -21,6 +21,7 @@
   <xsl:template match="*" mode="menu">
     <div class="menu">
       <h2><a href="/family">Families</a></h2>
+      <xsl:apply-templates mode="menu"/>
     </div>
   </xsl:template>
 

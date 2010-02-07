@@ -17,7 +17,14 @@
     <xsl:apply-templates select="family"/>
   </xsl:template>
 
+  <xsl:template match="families" mode="menu">
+  </xsl:template>
+
+  <xsl:template match="family" mode="menu">
+  </xsl:template>
+
   <xsl:template match="family">
+
     <div class="family">
       <h2><a href="/family/view/{@name}"><xsl:value-of select="@name"/></a></h2>
       <div class="chords">
@@ -51,7 +58,7 @@
 	    </form>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <a href="/family/newchord/{@name}">add a new chord to this family</a>
+	    <a href="/family/{@id}/newchord">add a new chord to this family</a>
 	  </xsl:otherwise>
 	</xsl:choose>
       </div>
