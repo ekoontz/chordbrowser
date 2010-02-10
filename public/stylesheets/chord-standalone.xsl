@@ -50,6 +50,11 @@
 	  <xsl:apply-templates select="fret[@number &gt; '1']"/>
 	</tbody>
       </table>
+
+      <div>
+      [save][cancel]
+      </div>
+
     </div>
   </xsl:template>
 
@@ -69,5 +74,34 @@
     </select>
   </xsl:template>
 
+  <xsl:template match="chord/fret/@*" mode="fret">
+    <select name="fret[{../@number}][{name()}]">
+      <option/>
+      <option value="1">
+	<xsl:if test=". = '1'">
+	  <xsl:attribute name="selected">selected</xsl:attribute>
+	</xsl:if>
+	1
+      </option>
+      <option value="2">
+	<xsl:if test=". = '2'">
+	  <xsl:attribute name="selected">selected</xsl:attribute>
+	</xsl:if>
+	2
+      </option>
+      <option value="3">
+	<xsl:if test=". = '3'">
+	  <xsl:attribute name="selected">selected</xsl:attribute>
+	</xsl:if>
+	3
+      </option>
+      <option value="4">
+	<xsl:if test=". = '4'">
+	  <xsl:attribute name="selected">selected</xsl:attribute>
+	</xsl:if>
+	4
+      </option>
+    </select>
+  </xsl:template>
 
 </xsl:stylesheet>
