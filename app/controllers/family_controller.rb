@@ -21,12 +21,12 @@ class FamilyController < ApplicationController
     # show one family
     @xml = ""
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
-    # should be only one.
+    # should be only one family for this chord.
     for family in Family::find(
                                :all,
-                               :conditions => ("name='" + params[:id] + "'"))
-      xml.family(:name => family.name) {
-        Chord::export(xml,"family='"+params[:id]+"'")
+                               :conditions => ("id='" + params[:id] + "'"))
+      xml.family(:name => family.name, :id => family.id) {
+        Chord::export(xml,"family='"+family.name+"'")
       }
     end
 

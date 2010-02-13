@@ -14,7 +14,8 @@
   </xsl:template>
 
   <xsl:template match="chord" mode="menu">
-    <h2><a href="/family/view/{@family}">&#171; Family: <xsl:value-of select="@family"/></a></h2>
+    <h2><a href="/family/view/{@family_id}">&#171; Family: <xsl:value-of select="@family"/></a></h2>
+    <h2>Editing Chord: <xsl:value-of select="@name"/></h2>
   </xsl:template>
 
   <xsl:template match="chords">
@@ -23,39 +24,37 @@
 
   <xsl:template match="chord">
     <div style="float:left">
-      <h1>Editing Chord <xsl:value-of select="@name"/></h1>
       <xsl:apply-templates select="." mode="edit"/>
     </div>
   </xsl:template>
 
   <xsl:template match="chord" mode="edit">
-    <div class="chord">
-      <h2><xsl:value-of select="@name"/></h2>
-
-      <table class="chord">
-	<thead>
-	  <tr>
-	    <th/>
-	    <th class="string">E</th>
-	    <th class="string">A</th>
-	    <th class="string">D</th>
-	    <th class="string">G</th>
-	    <th class="string">B</th>
-	    <th class="string">E</th>
-	  </tr>
-	  <xsl:apply-templates select="fret[@number = 'nut']"/>
-	</thead>
-	<tbody class="chord">
-	  <xsl:apply-templates select="fret[@number = '1']"/>
-	  <xsl:apply-templates select="fret[@number &gt; '1']"/>
-	</tbody>
-      </table>
-
-      <div>
-      [save][cancel]
+    <form action="/chord/save/{@id}" method="post">
+      <div class="chord">
+	<input name="name" value="{@name}"/>
+	<table class="chord">
+	  <thead>
+	    <tr>
+	      <th/>
+	      <th class="string">E</th>
+	      <th class="string">A</th>
+	      <th class="string">D</th>
+	      <th class="string">G</th>
+	      <th class="string">B</th>
+	      <th class="string">E</th>
+	    </tr>
+	    <xsl:apply-templates select="fret[@number = 'nut']"/>
+	  </thead>
+	  <tbody class="chord">
+	    <xsl:apply-templates select="fret[@number = '1']"/>
+	    <xsl:apply-templates select="fret[@number &gt; '1']"/>
+	  </tbody>
+	</table>
+	<div class="save">
+	  <input type="submit" value="Save"/>
+	</div>
       </div>
-
-    </div>
+    </form>
   </xsl:template>
 
   <!-- FIXME: refactor with public/stylesheets/chord.xsl.

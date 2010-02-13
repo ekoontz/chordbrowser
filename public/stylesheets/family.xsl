@@ -34,7 +34,7 @@
 
   <xsl:template match="family">
     <div class="family">
-      <h2><a href="/family/view/{@name}">Family <xsl:value-of select="@name"/></a></h2>
+      <h2><a href="/family/view/{@id}">Family <xsl:value-of select="@name"/></a></h2>
       <div class="chords">
 	<xsl:apply-templates select="chord"/>
       </div>
@@ -44,6 +44,8 @@
 	  <xsl:when test="$action = 'new'">
 	    <form method="post" action="/family/view/{@name}">
 	      <div style="float:left;border:2px solid #f0f0f0;padding:1.5em;margin:0.25em">
+		<!-- FIXME: incorporate fret_action=insert into 
+		     action=/family/view/{@name} -->
 		<input type="hidden" name="fret_action" value="insert"/>
 		<input type="hidden" name="{$request_forgery_protection_token}" value="{$form_authenticity_token}"/>
 		<input type="hidden" name="family" value="{@name}"/>
@@ -66,7 +68,7 @@
 	    </form>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <a href="/family/{@id}/newchord">add a new chord to this family</a>
+	    <a href="/family/newchord/{@id}">add a new chord to this family</a>
 	  </xsl:otherwise>
 	</xsl:choose>
       </div>

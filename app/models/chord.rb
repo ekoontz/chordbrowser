@@ -7,8 +7,17 @@ class Chord < ActiveRecord::Base
   end
 
   def export(xml)
+
+    # get family id.
+    families = Family::find(:all,:conditions => "name='"+family+"'")
+    #should be only one.
+    for the_family in families
+      family_id = the_family.id
+    end
+
     xml.chord(:name => name,
               :family => family,
+              :family_id => family_id,
               :id => id
               ) {
       @frets = Fret::find(:all,:conditions => "chord_id='"+self.id.to_s+"'")

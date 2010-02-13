@@ -42,5 +42,24 @@ class ChordController < ApplicationController
 
   end
 
+  def save
+    #should be only one.
+    for chord in Chord::find(
+                             :all,
+                             :conditions => ("id='" + params[:id] + "'"))
+      chord.name = self.params['name']
+      chord.save
+
+      for family in Family::find(
+                                 :all,
+                                 :conditions => ("name='" + chord.family + "'"))
+        
+        family_id = family.id
+      end
+    end
+
+    redirect_to("/family/view/"+family_id.to_s)
+
+  end
 
 end
