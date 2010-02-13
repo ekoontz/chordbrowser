@@ -23,7 +23,9 @@
 
   <xsl:template match="/families" mode="menu">
     <h2><a href="/">&doubleleft; Families</a></h2>
-    <h2>Family: <xsl:value-of select="family/@name"/></h2>
+    <xsl:if test="count(family) = 1">
+      <h2>Family: <xsl:value-of select="family/@name"/></h2>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="/family" mode="menu">
