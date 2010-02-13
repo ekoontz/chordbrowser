@@ -21,16 +21,14 @@ class FamilyController < ApplicationController
     # show one family
     @xml = ""
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
-
-    xml.families(:time => Time.now)  {
-      for family in Family::find(
-                                 :all,
-                                 :conditions => ("name='" + params[:id] + "'"))
-        xml.family(:name => family.name) {
-          Chord::export(xml,"family='"+params[:id]+"'")
-        }
-      end
-    }
+    # should be only one.
+    for family in Family::find(
+                               :all,
+                               :conditions => ("name='" + params[:id] + "'"))
+      xml.family(:name => family.name) {
+        Chord::export(xml,"family='"+params[:id]+"'")
+      }
+    end
 
     if (self.params['fret_action'] == "insert") 
 

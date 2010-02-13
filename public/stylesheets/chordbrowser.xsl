@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
+<!DOCTYPE stylesheet [
+<!ENTITY doubleleft "&#171;">
+]>
 <xsl:stylesheet 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -20,7 +23,7 @@
 
   <xsl:template match="*" mode="menu">
     <div class="menu">
-      <h2><a href="/family">Families</a></h2>
+      <h2><a href="/family">&doubleleft; Families</a></h2>
       <xsl:apply-templates mode="menu"/>
     </div>
   </xsl:template>

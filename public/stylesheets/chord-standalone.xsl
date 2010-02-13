@@ -14,7 +14,7 @@
   </xsl:template>
 
   <xsl:template match="chord" mode="menu">
-    <h2><a href="/family/view/{@family}">Family: <xsl:value-of select="@family"/></a></h2>
+    <h2><a href="/family/view/{@family}">&#171; Family: <xsl:value-of select="@family"/></a></h2>
   </xsl:template>
 
   <xsl:template match="chords">

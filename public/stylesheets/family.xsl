@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
+<!DOCTYPE stylesheet [
+<!ENTITY doubleleft "&#171;">
+]>
 <xsl:stylesheet 
     xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
@@ -18,15 +21,20 @@
   </xsl:template>
 
   <xsl:template match="families" mode="menu">
+    <h2>Families</h2>
   </xsl:template>
 
   <xsl:template match="family" mode="menu">
+    <h2><a href="/">&doubleleft; Families</a></h2>
+    <h2>Family: <xsl:value-of select="@name"/></h2>
+  </xsl:template>
+
+  <xsl:template match="chord" mode="menu">
   </xsl:template>
 
   <xsl:template match="family">
-
     <div class="family">
-      <h2><a href="/family/view/{@name}"><xsl:value-of select="@name"/></a></h2>
+      <h2><a href="/family/view/{@name}">Family <xsl:value-of select="@name"/></a></h2>
       <div class="chords">
 	<xsl:apply-templates select="chord"/>
       </div>
