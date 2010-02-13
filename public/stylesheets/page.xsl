@@ -352,7 +352,6 @@
       <iframe src="?output=xml" width="600px" height="20em"/>
   </xsl:template>
 
-
   <xsl:template match="*" mode="dropdown">
     <xsl:param name="top"/>
     <xsl:param name="selected"/>

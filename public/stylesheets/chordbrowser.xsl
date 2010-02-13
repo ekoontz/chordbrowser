@@ -21,17 +21,14 @@
     <title>Chordbrowser</title>
   </xsl:template>
 
-  <xsl:template match="*" mode="menu">
-    <div class="menu">
-      <h2><a href="/family">&doubleleft; Families</a></h2>
-      <xsl:apply-templates mode="menu"/>
-    </div>
-  </xsl:template>
-
   <xsl:template match="*" mode="external_css">
     <link rel="stylesheet" href="/stylesheets/chordbrowser.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/family.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/chord.css" type="text/css"/>
+  </xsl:template>
+
+  <xsl:template match="/families" mode="menu">
+    <h2>Showing all families</h2>
   </xsl:template>
 
   <xsl:template match="*" mode="body">
@@ -43,7 +40,7 @@
 	<xsl:apply-templates select="."/>
       </div>
 
-      <div style="display:block;position:fixed;bottom:0;width:60%;height:-3em;right:0px">
+      <div style="display:block;position:fixed;top:1em;width:30%;right:20%">
 	<xsl:apply-templates select="." mode="xml_iframe"/>
       </div>
 
