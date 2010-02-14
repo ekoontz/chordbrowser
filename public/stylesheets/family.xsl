@@ -20,7 +20,6 @@
     <xsl:apply-templates select="family"/>
   </xsl:template>
 
-
   <xsl:template match="/families" mode="menu">
     <xsl:choose>
       <xsl:when test="count(family) = 1">
@@ -39,6 +38,10 @@
   </xsl:template>
 
   <xsl:template match="*" mode="menu">
+  </xsl:template>
+
+  <xsl:template match="family" mode="view">
+    (controller is 'view..')
   </xsl:template>
 
   <xsl:template match="family">

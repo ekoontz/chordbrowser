@@ -21,16 +21,16 @@ class FamilyController < ApplicationController
     # show one family
     @xml = ""
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
-    # should be only one family for this chord.
-    for family in Family::find(
-                               :all,
-                               :conditions => ("id='" + params[:id] + "'"))
-      xml.family(:name => family.name, :id => family.id) {
-        Chord::export(xml,"family='"+family.name+"'")
-      }
-    end
 
-    logger.info("family_controller.rb:view: checking fret_action.")
+    xml.families(:time => Time.now)  {
+      for family in Family::find(
+                                 :all,
+                                 :conditions => ("name='" + params[:id] + "'"))
+        xml.family(:name => family.name) {
+          Chord::export(xml,"family='"+params[:id]+"'")
+        }
+      end
+    }
 
     if (self.params['fret_action'] == "insert") 
 
@@ -55,19 +55,21 @@ class FamilyController < ApplicationController
 
       end
 
-      #chord attribute stuff not working yet..
       for attrib in ChordAttribute::find(:all)
 
-        logger.info("checking chord attribute: " + attrib.name + ".")
+        logger.info("checking attribute: " + attrib.name + ".")
 
-        if ((self.params['attribute']) && (self.params['attrib'][attrib.name] == "on"))
+        if self.params['attrib'][attrib.name] == "on"
           logger.info("attribute: " + attrib.name + " checked.")
 
           # link chord (e.g. 'C#sus4') with attribute (e.g. 'sus4')
 
           link = ChordToChordAttrib.new
 
+
           link.chord_id = newchord.id
+
+          debugger
 
           attribs = ChordAttribute::find(:all,
                                          :conditions => ("name='"+self.params['attrib'][attrib.name]+"'"))
@@ -78,23 +80,14 @@ class FamilyController < ApplicationController
           logger.info("done checking attribute: " + attrib.name + ".")          
         end
 
+
+
       end
 
-      # look up family by name.(FIXME: controller should pass family by id, not name.)
-      for family in Family::find(
-                                 :all,
-                                 :conditions => ("name='" + self.params['family'] + "'"))
-        family_id = family.id
-      end
-
-      family_id = 7
-
-      redirect_to "/family/view/"+family_id.to_s, :status=>303
-      return
     end
 
-    render_xsl(@xml,"public/stylesheets/family.xsl")
 
+    render_xsl(@xml,"public/stylesheets/family.xsl")
   end
 
   def newchord
@@ -107,7 +100,7 @@ class FamilyController < ApplicationController
                                  :all,
                                  :conditions => ("id='" + params[:id] + "'"))
         xml.family(:name => family.name, :id => family.id) {
-          Chord::export(xml,"family='"+family.name+"'")
+          Chord::export(xml,"family='"+params[:id]+"'")
         }
 
         # used by XSLT to construct form for new (or eventually edit) chord.

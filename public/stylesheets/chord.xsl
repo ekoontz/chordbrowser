@@ -21,7 +21,7 @@
 	</div>
 	<form method="post" action="/chord/delete/{@id}">
 	  <div style="float:right">
-	    <input onclick="if (confirm('Delete this chord({@id})?')) submit(); else return false;" type="submit" value="Delete"/>
+	    <input onclick="if (confirm('Delete this chord ({@name})?')) submit(); else return false;" type="submit" value="Delete"/>
 	  </div>
 	</form>
 

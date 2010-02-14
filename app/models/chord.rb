@@ -1,11 +1,13 @@
 class Chord < ActiveRecord::Base
 
+  # class method: export all chords.
   def Chord::export(xml,conditions = "")
     for chord in find(:all,:order=>"name ASC",:conditions=>conditions)
       chord.export(xml)
     end
   end
 
+  # instance method: export one chord.
   def export(xml)
 
     # get family id.
@@ -34,5 +36,15 @@ class Chord < ActiveRecord::Base
 
     }
   end
+
+  def get_family_id
+    families = Family::find(:all,:conditions => "name='"+family+"'")
+    #should be only one.
+    for the_family in families
+      family_id = the_family.id
+      return family_id
+    end
+  end
+
 
 end

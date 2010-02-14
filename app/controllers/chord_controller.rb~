@@ -14,16 +14,10 @@ class ChordController < ApplicationController
     @xml = ""
     this_chord = Chord::find(:all,:conditions=>("id = '"+ params[:id] + "'")).first
     if (this_chord)
-
-      #FIXME: use family id, not family name as foreign key to families.      
-      family_id = this_chord.get_family_id.to_s
       this_chord.delete
-      logger.info(" REDIRECTING WITH A 303.")
-      redirect_to "/family/view/"+family_id, :status=>303
-      return
     end
-    logger.info("error: chord to delete was not found.")
-    redirect_to "/family/view/"+family_id, :status=>303
+
+    redirect_to("/")
 
   end
 
@@ -76,8 +70,14 @@ class ChordController < ApplicationController
 
 
       chord.save
-      family_id = chord.get_family_id.to_s
 
+      #find family_id : (again, will only loop over one element)
+      for family in Family::find(
+                                 :all,
+                                 :conditions => ("name='" + chord.family + "'"))
+        
+        family_id = family.id
+      end
     end
 
     redirect_to("/family/view/"+family_id.to_s)
