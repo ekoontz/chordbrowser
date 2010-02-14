@@ -46,7 +46,7 @@
       <div style="float:left;width:100%">
 	<xsl:choose>
 	  <xsl:when test="$action = 'new'">
-	    <form method="post" action="/family/view/{@name}">
+	    <form method="post" action="/family/view/{@id}">
 	      <div style="float:left;border:2px solid #f0f0f0;padding:1.5em;margin:0.25em">
 		<!-- FIXME: incorporate fret_action=insert into 
 		     action=/family/view/{@name} -->

@@ -26,8 +26,6 @@ class ChordController < ApplicationController
     this_chord = Chord::find(:all,:conditions=>("id = '"+ params[:id] + "'")).first
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
 
-#    debugger
-
     if (this_chord)
       xml.chords(:time => Time.now)  {
         this_chord::export(xml)
@@ -43,13 +41,37 @@ class ChordController < ApplicationController
   end
 
   def save
-    #should be only one.
+    #1-iteration loop.
+    #fixme: probably not the preferred method.
     for chord in Chord::find(
                              :all,
                              :conditions => ("id='" + params[:id] + "'"))
       chord.name = self.params['name']
+
+      # FIXME : refactor: copy and pasted from family_controller.rb:view
+      ["nut","1","2","3","4"].each do |fret|
+        #1-iteration loop.
+        #fixme: probably not the preferred method.
+        for editfret in Fret::find(:all,
+                               :conditions => (("chord_id='" + params[:id] + "' AND number='"+fret+"'")))
+          
+          editfret.e_low = self.params['fret'][fret.to_s]['e_low']
+          editfret.a = self.params['fret'][fret.to_s]['a']
+          editfret.d = self.params['fret'][fret.to_s]['d']
+          editfret.g = self.params['fret'][fret.to_s]['g']
+          editfret.b = self.params['fret'][fret.to_s]['b']
+          editfret.e = self.params['fret'][fret.to_s]['e']
+          
+          editfret.save
+
+        end
+
+      end
+
+
       chord.save
 
+      #find family_id : (again, will only loop over one element)
       for family in Family::find(
                                  :all,
                                  :conditions => ("name='" + chord.family + "'"))

@@ -77,14 +77,14 @@ class FamilyController < ApplicationController
           logger.info("done checking attribute: " + attrib.name + ".")          
         end
 
-
-
       end
+
+#      redirect_to("/family/view/5")
 
     end
 
-
     render_xsl(@xml,"public/stylesheets/family.xsl")
+
   end
 
   def newchord
