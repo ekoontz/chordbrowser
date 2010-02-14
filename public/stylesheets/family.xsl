@@ -72,7 +72,9 @@
 	    </form>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <a href="/family/newchord/{@id}">add a new chord to this family</a>
+	    <div style="float:right;margin-left:30%;margin-right:30%">
+	      <a href="/family/newchord/{@id}">add a new chord to this family</a>
+	    </div>
 	  </xsl:otherwise>
 	</xsl:choose>
       </div>
