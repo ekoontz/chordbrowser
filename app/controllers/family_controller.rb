@@ -57,13 +57,12 @@ class FamilyController < ApplicationController
 
         logger.info("checking attribute: " + attrib.name + ".")
 
-        if self.params['attrib'][attrib.name] == "on"
+        if ((self.params['attribute']) && (self.params['attrib'][attrib.name] == "on"))
           logger.info("attribute: " + attrib.name + " checked.")
 
           # link chord (e.g. 'C#sus4') with attribute (e.g. 'sus4')
 
           link = ChordToChordAttrib.new
-
 
           link.chord_id = newchord.id
 
