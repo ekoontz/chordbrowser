@@ -98,7 +98,7 @@ class FamilyController < ApplicationController
                                  :all,
                                  :conditions => ("id='" + params[:id] + "'"))
         xml.family(:name => family.name, :id => family.id) {
-          Chord::export(xml,"family='"+params[:id]+"'")
+          Chord::export(xml,"family='"+family.name+"'")
         }
 
         # used by XSLT to construct form for new (or eventually edit) chord.
