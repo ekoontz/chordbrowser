@@ -4,7 +4,7 @@ div.chords {
 
 div.chord {
     border:0px dashed green;
-    float:right;
+    float:left;
     margin:0.5em;
     width:10em;
     padding:0.5m;
