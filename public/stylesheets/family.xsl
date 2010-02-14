@@ -28,6 +28,7 @@
 	<h2>Family: <xsl:value-of select="family/@name"/></h2>
       </xsl:when>
       <xsl:otherwise>
+	<h2>Families</h2>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
