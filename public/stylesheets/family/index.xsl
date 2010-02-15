@@ -24,7 +24,15 @@
   <xsl:template match="family" mode="view_in_index">
     <div style="float:left">
       <h2><a href="/family/view/{@id}"><xsl:value-of select="@name"/></a></h2>
-      <xsl:apply-templates select="." mode="view"/>
+      <div class="family">
+	<div class="chords">
+	  <xsl:apply-templates select="chord"/>
+	</div>
+	<div style="float:left">
+	  <a href="/family/newchord/{@id}">add a new chord to this family</a>
+	</div>
+
+      </div>
     </div>
   </xsl:template>
 

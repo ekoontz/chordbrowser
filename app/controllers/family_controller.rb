@@ -137,7 +137,7 @@ class FamilyController < ApplicationController
       end
     }
 
-    render_xsl(@xml,"public/stylesheets/family.xsl",
+    render_xsl(@xml,nil,
                {"action" => "new"})
     
   end

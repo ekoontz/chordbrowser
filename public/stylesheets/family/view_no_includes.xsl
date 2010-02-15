@@ -13,7 +13,7 @@
     <xsl:apply-templates select="." mode="page"/>
   </xsl:template>
 
-  <xsl:template match="/family" mode="menu">
+  <xsl:template match="family" mode="menu">
     <h2><a href="/">&doubleleft; Families</a></h2>
     <h2>Family: <xsl:value-of select="@name"/></h2>
   </xsl:template>
@@ -21,7 +21,8 @@
   <xsl:template match="*" mode="menu">
   </xsl:template>
 
-  <xsl:template match="family" mode="view">
+  <xsl:template match="family" mode="viewzz">
+    <!-- GOING AWAY..copy contents to newchord.xsl.-->
     <div class="family">
       <div class="chords">
 	<xsl:apply-templates select="chord"/>

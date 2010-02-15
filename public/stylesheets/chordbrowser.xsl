@@ -28,10 +28,6 @@
     <link rel="stylesheet" href="/stylesheets/chord.css" type="text/css"/>
   </xsl:template>
 
-  <xsl:template match="/families" mode="menu">
-    <h2>Showing all families</h2>
-  </xsl:template>
-
   <xsl:template match="*" mode="body">
     <body style="padding:1%">
       <h1>Chordbrowser</h1>

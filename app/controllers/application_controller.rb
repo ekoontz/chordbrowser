@@ -29,9 +29,6 @@ class ApplicationController < ActionController::Base
       xslt = XML::XSLT.new()
       xslt.xml = xml
 
-      logger.info("controller: " + self.params[:controller])
-      logger.info("action: " + self.params[:action])
-
       default_xsl = "public/stylesheets/" + self.params[:controller] + "/" + self.params[:action] + ".xsl"
 
       logger.info("default xsl: " + default_xsl)
@@ -46,7 +43,6 @@ class ApplicationController < ActionController::Base
 
       xslt.xsl = File.read(xsl)
 
-      logger.info("render.xsl: xsl: " + xsl)
       xsl_params['request_forgery_protection_token'] = 
         self.request_forgery_protection_token.to_s
 

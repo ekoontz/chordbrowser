@@ -84,19 +84,6 @@
     </xsl:choose>
   </xsl:template>
 
-  <xsl:template match="edit/chord/fret/@*" mode="nut">
-    <select name="fret[nut][{name()}]]">
-      <option/>
-      <option>
-	<xsl:if test=". = 'x'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>x</option>
-      <option value="open">
-	<xsl:if test=". = 'open'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>o</option>
-    </select>
-  </xsl:template>
 
   <xsl:template match="fret">
     <xsl:param name="fret" select="@number"/>
@@ -139,16 +126,5 @@
     <xsl:param name="fret"/>
     <xsl:if test="."><xsl:value-of select="."/></xsl:if>
   </xsl:template>
-
-  <xsl:template match="edit/chord/fret/@*" mode="fret">
-    <select name="fret[{../@number}][{name()}]">
-      <option/>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </select>
-  </xsl:template>
-
 
 </xsl:stylesheet>
