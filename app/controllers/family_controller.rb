@@ -87,8 +87,6 @@ class FamilyController < ApplicationController
         family_id = family.id
       end
 
-      family_id = 7
-
       redirect_to "/family/view/"+family_id.to_s, :status=>303
       return
     end
