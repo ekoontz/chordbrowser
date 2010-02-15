@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
 
  before_filter :set_content_type
 
-  logger.info("SESSION TURNING ON..")
   session :on
-  logger.info("SESSION TURNED ON.")
+  #above generates warning:
+  # DEPRECATION WARNING: Disabling sessions for a single controller has been deprecated. Sessions are now lazy loaded. So if you don't access them, consider them off. You can still modify the session cookie options with request.session_options.. (called from /home/ekoontz/projects/chordbrowser/app/controllers/application_controller.rb:13)
  
   def set_content_type
     @headers = {}
@@ -22,12 +22,28 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def render_xsl(xml,xsl,xsl_params = Hash.new)
+  def render_xsl(xml,xsl = nil,xsl_params = Hash.new)
     if self.params["output"] == "xml"
       render :xml => xml
     else
       xslt = XML::XSLT.new()
       xslt.xml = xml
+
+      logger.info("controller: " + self.params[:controller])
+      logger.info("action: " + self.params[:action])
+
+      default_xsl = "public/stylesheets/" + self.params[:controller] + "/" + self.params[:action] + ".xsl"
+
+      logger.info("default xsl: " + default_xsl)
+
+      if (xsl == nil)
+        # guess what the XSL is based on the URL.
+        # (from routes.rb:) ':controller/:action/:id'
+        xsl = default_xsl
+      else
+        logger.info("overriding default with caller's xsl: " + xsl)
+      end
+
       xslt.xsl = File.read(xsl)
 
       logger.info("render.xsl: xsl: " + xsl)

@@ -13,7 +13,7 @@ class FamilyController < ApplicationController
       end
     }
 
-    render_xsl(@xml,"public/stylesheets/family.xsl")
+    render_xsl(@xml)
 
   end
 
@@ -93,7 +93,7 @@ class FamilyController < ApplicationController
       return
     end
 
-    render_xsl(@xml,"public/stylesheets/family.xsl")
+    render_xsl(@xml)
 
   end
 

@@ -22,6 +22,7 @@
   </xsl:template>
 
   <xsl:template match="*" mode="external_css">
+    <link rel="stylesheet" href="/stylesheets/page.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/chordbrowser.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/family.css" type="text/css"/>
     <link rel="stylesheet" href="/stylesheets/chord.css" type="text/css"/>
@@ -40,10 +41,6 @@
 	<xsl:apply-templates select="."/>
       </div>
 
-      <div style="display:block;position:fixed;top:1em;width:30%;right:20%">
-	<xsl:apply-templates select="." mode="xml_iframe"/>
-      </div>
-
       <div class="colophon">
 	<div style="whitespace:nowrap">
 	  by Eugene Koontz &lt;<a href="mailto:ekoontz@hiro-tan.org">ekoontz@hiro-tan.org</a>&gt;
@@ -51,6 +48,10 @@
 	<div>
 	  <a href="http://github.com/ekoontz/chordbrowser/">Source Code</a>
 	</div>
+      </div>
+
+      <div class="xml_iframe" style="">
+	<xsl:apply-templates select="." mode="xml_iframe"/>
       </div>
 
     </body>

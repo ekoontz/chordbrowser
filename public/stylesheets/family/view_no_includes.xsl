@@ -7,29 +7,10 @@
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     version="1.0">
 
-  <xsl:include href="public/stylesheets/chordbrowser.xsl"/>
-  <xsl:include href="public/stylesheets/chord.xsl"/>
-
   <xsl:param name="action"/>
 
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>
-  </xsl:template>
-
-  <xsl:template match="families">
-    <xsl:apply-templates select="family"/>
-  </xsl:template>
-
-  <xsl:template match="/families" mode="menu">
-    <xsl:choose>
-      <xsl:when test="count(family) = 1">
-	<h2><a href="/">&doubleleft; Families</a></h2>
-	<h2>Family: <xsl:value-of select="family/@name"/></h2>
-      </xsl:when>
-      <xsl:otherwise>
-	<h2>Families</h2>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="/family" mode="menu">
@@ -41,12 +22,7 @@
   </xsl:template>
 
   <xsl:template match="family" mode="view">
-    (controller is 'view..')
-  </xsl:template>
-
-  <xsl:template match="family">
     <div class="family">
-      <h2><a href="/family/view/{@id}">Family <xsl:value-of select="@name"/></a></h2>
       <div class="chords">
 	<xsl:apply-templates select="chord"/>
       </div>
@@ -80,7 +56,7 @@
 	    </form>
 	  </xsl:when>
 	  <xsl:otherwise>
-	    <div style="margin-top:1em;float:right;margin-left:30%;white-space:nowrap;margin-right:30%">
+	    <div style="float:left">
 	      <a href="/family/newchord/{@id}">add a new chord to this family</a>
 	    </div>
 	  </xsl:otherwise>

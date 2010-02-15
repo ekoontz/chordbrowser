@@ -1,6 +1,3 @@
-#as_xml_iframe {
-    float:right;
-}
 
 div.save {
     margin:1em;
@@ -22,4 +19,13 @@ div.colophon {
     padding:0.25em;
     white-space:nowrap;
     float:right;
+}
+
+div.xml_iframe {
+    display:block;
+    position:fixed;
+    top:1em;
+    height:5em;
+    width:20%;
+    right:20%;
 }
