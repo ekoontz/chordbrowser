@@ -349,7 +349,7 @@
   </xsl:template>
 
   <xsl:template match="*" mode="xml_iframe">
-      <iframe src="?output=xml" width="600px" height="20em"/>
+    <iframe src="?output=xml" width="600px" height="20em"/>
   </xsl:template>
 
   <xsl:template match="*" mode="dropdown">

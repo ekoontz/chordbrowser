@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 #  protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
- before_filter :set_content_type
+  before_filter :set_content_type
 
   session :on
   #above generates warning:
@@ -30,6 +30,10 @@ class ApplicationController < ActionController::Base
       xslt.xml = xml
 
       default_xsl = "public/stylesheets/" + self.params[:controller] + "/" + self.params[:action] + ".xsl"
+
+      if (xsl_params['mode'] == nil)
+        xsl_params['mode'] = self.params[:action]
+      end
 
       logger.info("default xsl: " + default_xsl)
 

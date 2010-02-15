@@ -60,7 +60,7 @@
     </form>
   </xsl:template>
 
-  <!-- FIXME: refactor with public/stylesheets/chord.xsl.
+  <!-- FIXME: refactor with public/stylesheets/family/newchord.xsl.
        (match="edit/chord/fret/@*" mode="nut") -->
   <xsl:template match="chord/fret/@*" mode="nut">
     <select name="fret[nut][{name()}]]">
