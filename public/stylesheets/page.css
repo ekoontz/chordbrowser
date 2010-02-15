@@ -25,7 +25,8 @@ div.xml_iframe {
     display:block;
     position:fixed;
     top:1em;
+    right:1em;
     height:5em;
     width:20%;
-    right:20%;
+    overflow:auto;
 }

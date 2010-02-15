@@ -11,4 +11,16 @@
   <xsl:include href="public/stylesheets/chord.xsl"/>
   <xsl:include href="public/stylesheets/family/view_no_includes.xsl"/>
 
+  <xsl:template match="family">
+    <xsl:apply-templates select="." mode="view"/>
+  </xsl:template>
+
+  <xsl:template match="family" mode="view">
+    <xsl:apply-templates/>
+    <div style="float:left">
+      <a href="/family/newchord/{@id}">add a new chord to this family</a>
+    </div>
+
+  </xsl:template>
+
 </xsl:stylesheet>

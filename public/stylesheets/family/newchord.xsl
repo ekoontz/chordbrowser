@@ -17,7 +17,13 @@
  </xsl:template>
 
   <xsl:template match="families" mode="menu">
+    <h2><a href="/">&doubleleft; Families</a></h2>
     <xsl:apply-templates mode="menu"/>
+  </xsl:template>
+
+  <xsl:template match="family" mode="menu">
+    <h2><a href="/family/view/{@id}">&doubleleft; Family <xsl:value-of select="@name"/></a></h2>
+    <h2>Add a new chord</h2>
   </xsl:template>
 
   <xsl:template match="families">
@@ -27,7 +33,7 @@
 
   <xsl:template match="family" mode="newchord">
     <form method="post" action="/family/view/{@id}">
-      <div style="float:left;border:2px solid #f0f0f0;padding:1.5em;margin:0.25em">
+      <div style="float:left;border:2px solid #f0f0f0;padding:1.5em;margin:0.25em;width:65%">
 	<input type="hidden" name="fret_action" value="insert"/>
 	<input type="hidden" name="{$request_forgery_protection_token}" value="{$form_authenticity_token}"/>
 	<input type="hidden" name="family" value="{@name}"/>
@@ -43,13 +49,14 @@
 	<div style="float:left;">
 	  <xsl:apply-templates select="../edit/chord"/>
 	</div>
-	<div style="float:right;text-align:right;width:100%">
+	<div style="float:right;text-align:right;width:50%;margin-right:25%">
 	  <input type="submit" value="Add Chord"/>
 	</div>
       </div>
     </form>
   </xsl:template>
 
+  <!-- FIXME: refactor against chord-standalone.xsl. -->
   <xsl:template match="edit/chord/fret/@*" mode="nut">
     <select name="fret[nut][{name()}]]">
       <option/>
@@ -73,5 +80,7 @@
       <option>4</option>
     </select>
   </xsl:template>
+
+  <xsl:template match="edit"/>
 
 </xsl:stylesheet>
