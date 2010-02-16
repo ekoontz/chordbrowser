@@ -10,3 +10,20 @@ div.colophon div {
     width:100%;
     padding:0.25em;
 }
+
+#user_nav {
+    text-align:right;
+    width:80%;
+    margin-right:30%;
+    float:right;
+    font-size:12px;
+}
+
+div#flash_notice {
+    background: #ccffcc;
+    border: 1px solid #66cc66;
+    padding:0.25em;
+    margin:0;
+    float:left;
+    width:50%;
+}

@@ -11,6 +11,11 @@
 	      doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
 	      doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"/>
 
+  <!-- might move one or more of these to page.xsl. -->
+  <xsl:param name="flash_notice"/>
+  <xsl:param name="current_user"/>
+  <!-- /might move one or more of these to page.xsl. -->
+
   <xsl:include href="page.xsl"/>
 
   <xsl:template match="/">
@@ -31,6 +36,28 @@
   <xsl:template match="*" mode="body">
     <body style="padding:1%">
       <h1>Chordbrowser</h1>
+      
+      <div id="user_nav">
+	<xsl:choose>
+	  <xsl:when test="$current_user">
+	    <a href="/users/current/edit">Edit Profile</a>
+	    |
+	    <a href="/logout">Logout</a>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <a href="/users/new">Register</a>
+	    |
+	    <a href="/login">Login</a>
+	  </xsl:otherwise>
+	</xsl:choose>
+      </div>
+
+      <xsl:if test="$flash_notice">
+	<div id="flash_notice">
+	  <xsl:value-of select="$flash_notice"/>
+	</div>
+      </xsl:if>
+
       <xsl:apply-templates select="." mode="menu"/>
 
       <div class="content">

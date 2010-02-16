@@ -7,9 +7,19 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
 #  protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+  def current_user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = UserSession.find
+  end
+
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.record
+  end
+
   before_filter :set_content_type
 
-  session :on
+#  session :on
   #above generates warning:
   # DEPRECATION WARNING: Disabling sessions for a single controller has been deprecated. Sessions are now lazy loaded. So if you don't access them, consider them off. You can still modify the session cookie options with request.session_options.. (called from /home/ekoontz/projects/chordbrowser/app/controllers/application_controller.rb:13)
  
@@ -54,6 +64,14 @@ class ApplicationController < ActionController::Base
       # adding a single quote to end of input value in : public/stylesheets/family.xsl.
       xsl_params['form_authenticity_token'] = 
         self.form_authenticity_token.gsub(/\'/,"")
+
+      if flash[:notice]
+        xsl_params['flash_notice'] = flash[:notice]
+      end
+
+      if self.current_user
+        xsl_params['current_user'] = self.current_user.id.to_s
+      end
 
       xslt.parameters = xsl_params.clone
 
