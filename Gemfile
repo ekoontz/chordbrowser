@@ -1,2 +1,2 @@
-gem 'ruby-xslt', '0.9.6'
+gem 'ruby-xslt'
 gem 'authlogic'
