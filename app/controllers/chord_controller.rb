@@ -97,7 +97,7 @@ class ChordController < ApplicationController
     end
 
     flash[:notice] = "Chord added."
-    redirect_to("/family/view/"+family_id.to_s)
+    redirect_to "/family/view/"+family_id.to_s,:status=>303
 
   end
 
