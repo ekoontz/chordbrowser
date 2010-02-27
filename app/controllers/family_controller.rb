@@ -56,28 +56,29 @@ class FamilyController < ApplicationController
       end
 
       #chord attribute stuff not working yet..
-      for attrib in ChordAttribute::find(:all)
-
-        logger.info("checking chord attribute: " + attrib.name + ".")
-
-        if ((self.params['attribute']) && (self.params['attrib'][attrib.name] == "on"))
-          logger.info("attribute: " + attrib.name + " checked.")
-
-          # link chord (e.g. 'C#sus4') with attribute (e.g. 'sus4')
-
-          link = ChordToChordAttrib.new
-
-          link.chord_id = newchord.id
-
-          attribs = ChordAttribute::find(:all,
-                                         :conditions => ("name='"+self.params['attrib'][attrib.name]+"'"))
-          set_attrib = attribs[0]
-
-          link.attrib_id = set_attrib.id
-        else
-          logger.info("done checking attribute: " + attrib.name + ".")          
+      if nil
+        for attrib in ChordAttribute::find(:all)
+          
+          logger.info("checking chord attribute: " + attrib.name + ".")
+          
+          if ((self.params['attribute']) && (self.params['attrib'][attrib.name] == "on"))
+            logger.info("attribute: " + attrib.name + " checked.")
+            
+            # link chord (e.g. 'C#sus4') with attribute (e.g. 'sus4')
+            
+            link = ChordToChordAttrib.new
+            
+            link.chord_id = newchord.id
+            
+            attribs = ChordAttribute::find(:all,
+                                           :conditions => ("name='"+self.params['attrib'][attrib.name]+"'"))
+            set_attrib = attribs[0]
+            
+            link.attrib_id = set_attrib.id
+          else
+            logger.info("done checking attribute: " + attrib.name + ".")          
+          end
         end
-
       end
 
       # look up family by name.(FIXME: controller should pass family by id, not name.)
@@ -109,11 +110,13 @@ class FamilyController < ApplicationController
         }
 
         # used by XSLT to construct form for new (or eventually edit) chord.
-        xml.chord_attributes {
-          for chord_attribute in ChordAttribute::find(:all) 
-            xml.chord_attribute(:name => chord_attribute.name)
-          end
-        }
+        if nil
+          xml.chord_attributes {
+            for chord_attribute in ChordAttribute::find(:all) 
+              xml.chord_attribute(:name => chord_attribute.name)
+            end
+          }
+        end
 
         xml.edit {
           xml.chord {
