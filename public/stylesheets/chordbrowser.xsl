@@ -14,6 +14,7 @@
   <!-- might move one or more of these to page.xsl. -->
   <xsl:param name="flash_notice"/>
   <xsl:param name="current_user"/>
+  <xsl:param name="xsl"/>
   <!-- /might move one or more of these to page.xsl. -->
 
   <xsl:include href="page.xsl"/>
@@ -78,7 +79,8 @@
 
       <xsl:apply-templates select="." mode="xml_div">
 	<xsl:with-param name="src">?output=xsl</xsl:with-param>
-	<xsl:with-param name="style">top:15em</xsl:with-param>
+	<xsl:with-param name="style">top:17em</xsl:with-param>
+	<xsl:with-param name="title"><a target="_new" href="/{$xsl}"><xsl:value-of select="$xsl"/></a></xsl:with-param>
       </xsl:apply-templates>
 
     </body>

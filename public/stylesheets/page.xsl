@@ -357,7 +357,11 @@
   <xsl:template match="*" mode="xml_div">
     <xsl:param name="src">?output=xml</xsl:param>
     <xsl:param name="style">top:1em</xsl:param>
+    <xsl:param name="title"/>
     <div class="xml_iframe" style="{$style}">
+      <xsl:if test="$title">
+	<h2><xsl:copy-of select="$title"/></h2>
+      </xsl:if>
       <xsl:apply-templates select="." mode="xml_iframe">
 	<xsl:with-param name="src"><xsl:value-of select="$src"/></xsl:with-param>
       </xsl:apply-templates>

@@ -98,7 +98,7 @@ class ApplicationController < ActionController::Base
 #    xslt_params = xslt_params.merge(self.params)
     xslt_params = Hash.new
     self.params.keys.sort.each {|key|
-      logger.info(" " + key + " => " + self.params[key])
+      logger.info(" copying: " + key + " => " + self.params[key])
       if (
           key != "id" &&
           key != "mode") 
@@ -106,10 +106,10 @@ class ApplicationController < ActionController::Base
       end
     }
     
-    xslt_params["foo"] = "bar"
-
     xslt_params = xslt_params.merge(extra_params)
     
+    xslt_params["xsl"] = xsl
+
     logger.info("render_xsl(): <xslt_params>");
     xslt_params.keys.sort.each {|key|
       logger.info(" " + key + " => " + xslt_params[key])
