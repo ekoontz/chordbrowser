@@ -16,9 +16,13 @@
   </xsl:template>
 
   <xsl:template match="family" mode="view">
-    <xsl:apply-templates/>
-    <div style="float:left">
-      <a href="/family/newchord/{@id}">add a new chord to this family</a>
+    <div class="family">
+      <div class="chords">
+	<xsl:apply-templates/>
+      </div>
+      <div style="float:left">
+	<a href="/family/newchord/{@id}">add a new chord to this family</a>
+      </div>
     </div>
 
   </xsl:template>
