@@ -16,18 +16,22 @@
     <div class="chord">
       <xsl:if test="@name">
 	<div style="width:100%;float:left">
-	  <div style="width:20%;float:left">
-	    <a href="/chord/edit/{@id}">edit</a>
-	  </div>
+	  <xsl:if test="$current_user">
+	    <div style="width:20%;float:left">
+	      <a href="/chord/edit/{@id}">edit</a>
+	    </div>
+	  </xsl:if>
 	  <div style="width:50%;float:left;;padding:0">
 	    <h2 style="padding:0;margin:0"><xsl:value-of select="@name"/></h2>
 	  </div>
 	  <div style="width:20%;float:left">
-	    <form method="post" action="/chord/delete/{@id}">
-	      <div style="float:right">
-		<input onclick="if (confirm('Delete this chord ({@name})?')) submit(); else return false;" type="submit" value="Delete"/>
-	      </div>
-	    </form>
+	    <xsl:if test="$current_user">
+	      <form method="post" action="/chord/delete/{@id}">
+		<div style="float:right">
+		  <input onclick="if (confirm('Delete this chord ({@name})?')) submit(); else return false;" type="submit" value="Delete"/>
+		</div>
+	      </form>
+	    </xsl:if>
 	  </div>
 	</div>
       </xsl:if>

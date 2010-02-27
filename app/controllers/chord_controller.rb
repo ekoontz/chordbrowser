@@ -12,13 +12,29 @@ class ChordController < ApplicationController
 
   def delete
     @xml = ""
+    if current_user
+    else
+      flash[:notice] = "You must be logged in to delete chords."
+      this_chord = Chord::find(:all,:conditions=>("id = '"+ params[:id] + "'")).first
+      if (this_chord)
+        #FIXME: use family id, not family name as foreign key to families.      
+        family_id = this_chord.get_family_id.to_s
+        redirect_to "/family/view/"+family_id, :status=>303
+        return
+      else
+        redirect_to "/"+family_id, :status=>303
+
+      end
+    end
+
     this_chord = Chord::find(:all,:conditions=>("id = '"+ params[:id] + "'")).first
     if (this_chord)
-
       #FIXME: use family id, not family name as foreign key to families.      
       family_id = this_chord.get_family_id.to_s
+
       this_chord.delete
       logger.info(" REDIRECTING WITH A 303.")
+      flash[:notice] = "Chord deleted."
       redirect_to "/family/view/"+family_id, :status=>303
       return
     end
@@ -80,6 +96,7 @@ class ChordController < ApplicationController
 
     end
 
+    flash[:notice] = "Chord added."
     redirect_to("/family/view/"+family_id.to_s)
 
   end
