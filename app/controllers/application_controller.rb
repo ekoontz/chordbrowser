@@ -25,14 +25,21 @@ class ApplicationController < ActionController::Base
  
   def set_content_type
     @headers = {}
+    #fixme: use switch, not nested if..else..
     if self.params["output"] == "xml"
       @headers["Content-Type"] = "text/xml; charset=utf-8"
     else
-      @headers["Content-Type"] = "application/xhtml+xml; charset=utf-8"
+      if self.params["output"] == "xsl"
+        @headers["Content-Type"] = "text/xml; charset=utf-8"
+      else
+        @headers["Content-Type"] = "application/xhtml+xml; charset=utf-8"
+      end
     end
   end
 
   def render_xsl(xml,xsl = nil,xsl_params = Hash.new)
+    logger.info("render_xsl(): FORMAT IS : " + self.params["output"])
+
     if self.params["output"] == "xml"
       render :xml => xml
     else
@@ -45,7 +52,7 @@ class ApplicationController < ActionController::Base
         xsl_params['mode'] = self.params[:action]
       end
 
-      logger.info("default xsl: " + default_xsl)
+      logger.info("render_xsl(): default xsl: " + default_xsl)
 
       if (xsl == nil)
         # guess what the XSL is based on the URL.
@@ -57,32 +64,35 @@ class ApplicationController < ActionController::Base
 
       xslt.xsl = File.read(xsl)
 
-      xsl_params['request_forgery_protection_token'] = 
-        self.request_forgery_protection_token.to_s
-
-      # Does not work yet because of single quotes(') in token.
-      # adding a single quote to end of input value in : public/stylesheets/family.xsl.
-      xsl_params['form_authenticity_token'] = 
-        self.form_authenticity_token.gsub(/\'/,"")
-
-      if flash[:notice]
-        xsl_params['flash_notice'] = flash[:notice]
+      if self.params["output"] == "xsl"
+        render :xml => File.read(xsl)
+      else
+        xsl_params['request_forgery_protection_token'] = 
+          self.request_forgery_protection_token.to_s
+        
+        # Does not work yet because of single quotes(') in token.
+        # adding a single quote to end of input value in : public/stylesheets/family.xsl.
+        xsl_params['form_authenticity_token'] = 
+          self.form_authenticity_token.gsub(/\'/,"")
+        
+        if flash[:notice]
+          xsl_params['flash_notice'] = flash[:notice]
+        end
+        
+        if self.current_user
+          xsl_params['current_user'] = self.current_user.id.to_s
+        end
+        
+        xslt.parameters = xsl_params.clone
+        
+        @out = xslt.serve()
+        
+        self.response.headers["Cache-Control"] = "no-cache"
+        self.response.headers["Pragma"] = "no-cache"
+        
+        render :xml => @out
       end
-
-      if self.current_user
-        xsl_params['current_user'] = self.current_user.id.to_s
-      end
-
-      xslt.parameters = xsl_params.clone
-
-      @out = xslt.serve()
-
-      self.response.headers["Cache-Control"] = "no-cache"
-      self.response.headers["Pragma"] = "no-cache"
-
-      render :xml => @out
     end
-
   end
 
 

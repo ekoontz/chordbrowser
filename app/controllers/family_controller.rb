@@ -13,6 +13,9 @@ class FamilyController < ApplicationController
       end
     }
 
+    logger.info("FamilyController:index() : calling render_xsl()")
+    logger.info("       FORMAT IS : " + self.params["output"])
+
     render_xsl(@xml)
 
   end

@@ -349,7 +349,19 @@
   </xsl:template>
 
   <xsl:template match="*" mode="xml_iframe">
-    <iframe src="?output=xml" width="600px" height="20em"/>
+    <xsl:param name="height">10em</xsl:param>
+    <xsl:param name="src">?output=xml</xsl:param>
+    <iframe src="{$src}" width="600px" height="{$height}"/>
+  </xsl:template>
+
+  <xsl:template match="*" mode="xml_div">
+    <xsl:param name="src">?output=xml</xsl:param>
+    <xsl:param name="style">top:1em</xsl:param>
+    <div class="xml_iframe" style="{$style}">
+      <xsl:apply-templates select="." mode="xml_iframe">
+	<xsl:with-param name="src"><xsl:value-of select="$src"/></xsl:with-param>
+      </xsl:apply-templates>
+    </div>
   </xsl:template>
 
   <xsl:template match="*" mode="dropdown">

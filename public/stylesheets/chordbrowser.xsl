@@ -73,9 +73,13 @@
 	</div>
       </div>
 
-      <div class="xml_iframe" style="">
-	<xsl:apply-templates select="." mode="xml_iframe"/>
-      </div>
+
+      <xsl:apply-templates select="." mode="xml_div"/>
+
+      <xsl:apply-templates select="." mode="xml_div">
+	<xsl:with-param name="src">?output=xsl</xsl:with-param>
+	<xsl:with-param name="style">top:15em</xsl:with-param>
+      </xsl:apply-templates>
 
     </body>
   </xsl:template>
