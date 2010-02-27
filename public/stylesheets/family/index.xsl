@@ -11,8 +11,6 @@
   <xsl:include href="public/stylesheets/chord.xsl"/>
   <xsl:include href="public/stylesheets/family/view_no_includes.xsl"/>
 
-  <xsl:param name="action"/>
-
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>
   </xsl:template>
