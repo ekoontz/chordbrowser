@@ -18,6 +18,7 @@
   <xsl:param name="format"/>
   <xsl:param name="request_forgery_protection_token"/>
   <xsl:param name="form_authenticity_token"/>
+  <xsl:param name="debug"/>
 
   <xsl:template match="/" mode="page">
     <xsl:param name="title" select="'untitled'"/>
@@ -351,21 +352,25 @@
   <xsl:template match="*" mode="xml_iframe">
     <xsl:param name="height">10em</xsl:param>
     <xsl:param name="src">?output=xml</xsl:param>
-    <iframe src="{$src}" width="600px" height="{$height}"/>
+    <xsl:if test="$debug='true'">
+      <iframe src="{$src}" width="600px" height="{$height}"/>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="*" mode="xml_div">
     <xsl:param name="src">?output=xml</xsl:param>
     <xsl:param name="style">top:1em</xsl:param>
     <xsl:param name="title"/>
-    <div class="xml_iframe" style="{$style}">
-      <xsl:if test="$title">
-	<h2><xsl:copy-of select="$title"/></h2>
-      </xsl:if>
-      <xsl:apply-templates select="." mode="xml_iframe">
-	<xsl:with-param name="src"><xsl:value-of select="$src"/></xsl:with-param>
-      </xsl:apply-templates>
-    </div>
+    <xsl:if test="$debug='true'">
+      <div class="xml_iframe" style="{$style}">
+	<xsl:if test="$title">
+	  <h2><xsl:copy-of select="$title"/></h2>
+	</xsl:if>
+	<xsl:apply-templates select="." mode="xml_iframe">
+	  <xsl:with-param name="src"><xsl:value-of select="$src"/></xsl:with-param>
+	</xsl:apply-templates>
+      </div>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="*" mode="dropdown">
