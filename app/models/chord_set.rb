@@ -15,7 +15,7 @@ class ChordSet < ActiveRecord::Base
           for chord in Chord::find_by_sql ["SELECT * FROM chords 
                                                   WHERE id IN (SELECT chord_id 
                                                                  FROM chord_set_members 
-                                                                WHERE chord_set_id = ?)",chord_set[:id]]
+                                                                WHERE chord_set_id = ?) ORDER BY name",chord_set[:id]]
             chord.export(xml)
           end
         }
