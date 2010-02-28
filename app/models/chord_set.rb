@@ -10,14 +10,16 @@ class ChordSet < ActiveRecord::Base
       end
 
       # find all chords for which there is a corresponding chord_set_member.
-      xml.chords {
-        for chord in Chord::find_by_sql ["SELECT * FROM chords 
+      if chord_set
+        xml.chords {
+          for chord in Chord::find_by_sql ["SELECT * FROM chords 
                                                   WHERE id IN (SELECT chord_id 
                                                                  FROM chord_set_members 
                                                                 WHERE chord_set_id = ?)",chord_set[:id]]
-          chord.export(xml)
-        end
-      }
+            chord.export(xml)
+          end
+        }
+      end
 
       if (add == "add") 
         xml.add {
