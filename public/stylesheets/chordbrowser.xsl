@@ -35,22 +35,24 @@
   </xsl:template>
 
   <xsl:template match="*" mode="body">
-    <body style="padding:1%">
-      <h1>Chordbrowser</h1>
+    <body>
+      <div class="header">
+	<h1>Chordbrowser</h1>
       
-      <div id="user_nav">
-	<xsl:choose>
-	  <xsl:when test="$current_user">
-	    <a href="/users/current/edit">Edit Profile</a>
-	    |
-	    <a href="/logout">Logout</a>
-	  </xsl:when>
-	  <xsl:otherwise>
-	    <a href="/users/new">Register</a>
-	    |
-	    <a href="/login">Login</a>
-	  </xsl:otherwise>
-	</xsl:choose>
+	<div id="user_nav">
+	  <xsl:choose>
+	    <xsl:when test="$current_user">
+	      <a href="/users/current/edit">Edit Profile</a>
+	      |
+	      <a href="/logout">Logout</a>
+	    </xsl:when>
+	    <xsl:otherwise>
+	      <a href="/users/new">Register</a>
+	      |
+	      <a href="/login">Login</a>
+	    </xsl:otherwise>
+	  </xsl:choose>
+	</div>
       </div>
 
       <xsl:if test="$flash_notice">
@@ -59,7 +61,9 @@
 	</div>
       </xsl:if>
 
-      <xsl:apply-templates select="." mode="menu"/>
+      <div class="menu">
+	<xsl:apply-templates select="." mode="menu"/>
+      </div>
 
       <div class="content">
 	<xsl:apply-templates select="."/>
