@@ -361,7 +361,7 @@
     <xsl:if test="$debug='true'">
       <div class="xml_iframe" style="{$style}">
 	<xsl:if test="$title">
-	  <h2><xsl:copy-of select="$title"/></h2>
+	  <h4><xsl:copy-of select="$title"/></h4>
 	</xsl:if>
 	<xsl:apply-templates select="." mode="xml_iframe">
 	  <xsl:with-param name="src"><xsl:value-of select="$src"/></xsl:with-param>

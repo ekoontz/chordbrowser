@@ -14,6 +14,7 @@
   </xsl:template>
 
   <xsl:template match="family" mode="menu">
+    <h2><a href="/chord_set">&doubleleft; Sets</a></h2>
     <h2><a href="/">&doubleleft; Families</a></h2>
     <h2>Family: <xsl:value-of select="@name"/></h2>
   </xsl:template>

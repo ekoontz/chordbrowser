@@ -3,7 +3,7 @@ class ChordSet < ActiveRecord::Base
 
   #class instance : export all chords (that satisfy specified conditions, or all, if no conditions given).
   def ChordSet::export(xml,conditions = "")
-    xml.chord_sets (:time => Time.now) {
+    xml.chord_sets(:time => Time.now) {
       for chord_set in find(:all,:order=>"name ASC",:conditions=>conditions)
         chord_set.export(xml)
       end

@@ -31,7 +31,6 @@ class ChordSetController < ApplicationController
 
     flash[:notice] = "Chord set added."
 
-
     redirect_to "/chord_set/", :status=>303
     return
 
