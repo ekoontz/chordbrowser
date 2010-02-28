@@ -1,19 +1,33 @@
 class ChordSetController < ApplicationController
+
   def index
     # show all sets.
     @xml = ""
     xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
+    ChordSet::export(xml)
+    render_xsl @xml
+  end
 
-    xml.chord_sets(:time => Time.now)  {
-      for chord_set in ChordSet::find(:all,:order=>"name")
-        xml.chord_set(:name => chord_set.name,:id=>chord_set.id) {
-          #export all chords for this set.
-        }
-      end
-    }
+  def new
+    # show all sets.
+    @xml = ""
+    xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
+    ChordSet::export(xml)
+    render_xsl @xml
+  end
 
-    render_xsl(@xml)
+  def insert
+    newset = ChordSet.new
+    newset.name = self.params['name']
+    newset.save
+
+    flash[:notice] = "Chord set added."
+
+
+    redirect_to "/chord_set/", :status=>303
+    return
 
   end
+
 
 end

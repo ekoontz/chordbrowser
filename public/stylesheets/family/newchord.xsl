@@ -33,7 +33,7 @@
 
   <xsl:template match="family" mode="newchord">
     <form method="post" action="/family/view/{@id}">
-      <div style="float:left;border:2px solid #f0f0f0;padding:1.5em;margin:0.25em;width:65%">
+      <div class="form">
 	<input type="hidden" name="fret_action" value="insert"/>
 	<input type="hidden" name="{$request_forgery_protection_token}" value="{$form_authenticity_token}"/>
 	<input type="hidden" name="family" value="{@name}"/>
