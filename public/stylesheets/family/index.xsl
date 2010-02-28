@@ -41,8 +41,8 @@
 	<h2>Family: <xsl:value-of select="family/@name"/></h2>
       </xsl:when>
       <xsl:otherwise>
+	<h2><a href="/chord_set/">&doubleleft; Sets</a></h2>
 	<h2>Families</h2>
-	<h2><a href="/chord_set/">Sets</a></h2>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

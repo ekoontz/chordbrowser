@@ -77,6 +77,7 @@ div.form h2 {
 div.table {
     float:left;
     width:95%;    
+    padding:1%;
 }
 
 div.table table {
