@@ -1,9 +1,28 @@
+body {
+    background: white;
+    padding:0;
+}
+
+div.header {
+    float:left;
+    margin:0;
+    border:0px dashed green;
+    padding:0;
+    background:#f0f0f0;
+}
 
 div.save {
     margin:1em;
 }
 
-h2 {
+h1 {
+    padding:0;
+    margin:0;
+    padding-left:1em;
+    margin-left:1em;
+}
+
+h1,h2 {
     width:auto;
     float:left;
     margin-right:1em;
@@ -14,11 +33,17 @@ div {
 }
 
 div.colophon {
+    padding:0.5em;
+    margin-right:1em;
     width:auto;
     background: #f0f0f0;
-    padding:0.25em;
-    white-space:nowrap;
     float:right;
+    
+}
+
+div.colophon div {
+    padding:0;
+    margin:0;
 }
 
 div.xml_iframe {
@@ -32,4 +57,60 @@ div.xml_iframe {
 div.xml_iframe h2 {
     padding:0;
     margin:0;
+}
+
+div.form {
+    width:65%;
+    float:left;
+    border:2px solid #0066cc;
+    padding:0.5em;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+
+div.form h2 {
+    padding:0;
+    margin:0;
+    width:100%;
+}
+
+div.table {
+    float:left;
+    width:95%;    
+}
+
+div.table table {
+    float:left;
+    width:100%;
+    border:1px solid #00eeff;
+    border-collapse:collapse;
+}
+
+div.table th {
+    border-bottom:2px solid #000033;
+}
+
+div.table tr.even {
+    background:#00eeff;
+}
+
+div.table th {
+    text-align:left;
+}
+
+div.table td {
+    text-align:left;
+}
+
+div.table th.numbering {
+    text-align:right;
+    width:2em;
+    border:0;
+}
+
+div.menu {
+    padding:0;
+    margin:0;
+    width:95%;
+    float:left;
 }
