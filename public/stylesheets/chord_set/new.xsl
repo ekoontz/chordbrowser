@@ -24,8 +24,6 @@
   </xsl:template>
 
   <xsl:template match="chord_sets">
-    <xsl:apply-templates select="." mode="view_in_index"/>
-
     <form method="post" action="/chord_set/insert">
       <div class="form">
 	<h2>Add a new set:</h2>
@@ -36,6 +34,8 @@
 	</div>
       </div>
     </form>
+    <xsl:apply-templates select="." mode="view_in_index"/>
+
   </xsl:template>
 
 </xsl:stylesheet>
