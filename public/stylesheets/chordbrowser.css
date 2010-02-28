@@ -12,9 +12,10 @@ div.colophon div {
 }
 
 #user_nav {
+    top:5px;
     text-align:right;
-    width:80%;
-    margin-right:30%;
+    width:auto;
+    margin-right:1%;
     float:right;
     font-size:12px;
 }
