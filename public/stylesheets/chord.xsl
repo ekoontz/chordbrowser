@@ -12,27 +12,39 @@
     <xsl:apply-templates/>
   </xsl:template>
 
+  <xsl:template match="chord" mode="edit">
+    <xsl:if test="$current_user">
+      <div style="width:20%;float:left">
+	<a href="/chord/edit/{@id}">edit</a>
+      </div>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template match="chord" mode="delete">
+    <div style="width:20%;float:right">
+      <xsl:if test="$current_user">
+	<form method="post" action="/chord/delete/{@id}">
+	  <div style="float:right">
+	    <input onclick="if (confirm('Delete this chord ({@name})?')) submit(); else return false;" type="submit" value="Delete"/>
+	  </div>
+	</form>
+      </xsl:if>
+    </div>
+  </xsl:template>
+
+  <xsl:template match="chord" mode="title">
+    <div style="width:100%;float:left;padding:0">
+      <h2 style="padding:0;margin:0"><xsl:value-of select="@name"/></h2>
+    </div>
+  </xsl:template>
+  
   <xsl:template match="chord">
     <div class="chord">
       <xsl:if test="@name">
 	<div style="width:100%;float:left">
-	  <div style="width:100%;float:left;padding:0">
-	    <h2 style="padding:0;margin:0"><xsl:value-of select="@name"/></h2>
-	  </div>
-	  <xsl:if test="$current_user">
-	    <div style="width:20%;float:left">
-	      <a href="/chord/edit/{@id}">edit</a>
-	    </div>
-	  </xsl:if>
-	  <div style="width:20%;float:right">
-	    <xsl:if test="$current_user">
-	      <form method="post" action="/chord/delete/{@id}">
-		<div style="float:right">
-		  <input onclick="if (confirm('Delete this chord ({@name})?')) submit(); else return false;" type="submit" value="Delete"/>
-		</div>
-	      </form>
-	    </xsl:if>
-	  </div>
+	  <xsl:apply-templates select="." mode="title"/>
+	  <xsl:apply-templates select="." mode="edit"/>
+	  <xsl:apply-templates select="." mode="delete"/>
 	</div>
       </xsl:if>
       <div style="float:left">

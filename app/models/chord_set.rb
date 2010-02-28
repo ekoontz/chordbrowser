@@ -7,12 +7,18 @@ class ChordSet < ActiveRecord::Base
       for chord_set in find(:all,:order=>"name ASC",:conditions=>conditions)
         chord_set.export(xml)
       end
+
+      xml.chords {
+        for chord in Chord::find(:all,:order=>"name ASC")
+          chord.export(xml)
+        end
+      }
+
     }
   end
 
   def export(xml)
     xml.chord_set(:name => name,
-                  :biff => 42,
                   :id => id) {
     }
   end

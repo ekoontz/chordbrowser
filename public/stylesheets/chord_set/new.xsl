@@ -19,7 +19,6 @@
       <xsl:otherwise>
 	<h2><a href="/family/">&doubleleft; Families</a></h2>
 	<h2><a href="/chord_set">&doubleleft; Sets</a></h2>
-
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>

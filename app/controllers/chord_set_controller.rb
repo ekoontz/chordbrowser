@@ -16,6 +16,14 @@ class ChordSetController < ApplicationController
     render_xsl @xml
   end
 
+  def view
+    # show one set.
+    @xml = ""
+    xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
+    ChordSet::export(xml,"id='"+params[:id]+"'")
+    render_xsl @xml
+  end
+
   def insert
     newset = ChordSet.new
     newset.name = self.params['name']
