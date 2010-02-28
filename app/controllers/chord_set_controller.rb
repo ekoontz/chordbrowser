@@ -9,11 +9,8 @@ class ChordSetController < ApplicationController
   end
 
   def new
-    # show all sets.
-    @xml = ""
-    xml = Builder::XmlMarkup.new(:target => @xml, :indent => 2 )
-    ChordSet::export(xml)
-    render_xsl @xml
+    # same as "index", but stylesheet will differ.
+    self.index
   end
 
   def view
