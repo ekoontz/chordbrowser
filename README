@@ -1,5 +1,7 @@
-== Chordbrowser
+Chordbrowser
 
 A rails app to browse guitar chords.
+
+<a href="http://chordbrowser.heroku.com">Demo site: chordbrowser.heroku.com</a>
 
 Eugene Koontz <ekoontz@hiro-tan.org>
