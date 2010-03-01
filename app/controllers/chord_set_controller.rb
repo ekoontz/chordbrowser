@@ -36,12 +36,30 @@ class ChordSetController < ApplicationController
     newset.save
 
     flash[:notice] = "Chord set added."
+    redirect_to "/chord_set/view/"+newset.id.to_s, :status=>303
+  end
+
+  def delete
+    if current_user
+
+      links = ChordSetMembers::find(:all,:conditions=>("chord_set_id = '"+ params[:id] + "'"))
+      for link in links
+        link.delete
+      end
+
+      this_set = ChordSet::find(:all,:conditions=>("id = '"+ params[:id] + "'")).first
+      if (this_set)
+        this_set.delete
+      end
+      flash[:notice] = "Chord set deleted."
+    else
+      flash[:notice] = "You must be logged in to delete chord sets."
+    end
     redirect_to "/chord_set/", :status=>303
   end
 
   def add_chord
     # add chord to set.
-
     newlink = ChordSetMembers.new
     newlink.chord_id = params[:id]
     newlink.chord_set_id = params[:chord_set_id]
@@ -53,13 +71,15 @@ class ChordSetController < ApplicationController
 
   def remove_chord
     # add chord to set.
-
-    link = ChordSetMembers::find(:all,:conditions=>["chord_id='"+params[:id]+"'","chord_set_id='"+params[:chord_set_id]+"'"]).first
-    if (link) 
-      link.delete
+    if current_user
+      link = ChordSetMembers::find(:all,:conditions=>["chord_id='"+params[:id]+"'","chord_set_id='"+params[:chord_set_id]+"'"]).first
+      if (link) 
+        link.delete
+      end
+      flash[:notice] = "Chord removed from this set."
+    else
+      flash[:notice] = "You must be logged in to remove chords from sets."
     end
-
-    flash[:notice] = "Chord removed from this set."
     redirect_to "/chord_set/view/"+params[:chord_set_id], :status=>303
   end
 
