@@ -24,7 +24,7 @@
   </xsl:template>
 
   <xsl:template match="chords[not(chord)]">
-    <div><i>No chords in this set.</i></div>
+    <div style="margin:1em"><i>No chords in this set.</i></div>
   </xsl:template>
 
   <xsl:template match="chord" mode="title">
