@@ -92,7 +92,12 @@
 	<xsl:apply-templates select="@e" mode="nut"/>
       </th>
     </tr>
+    <!-- some chords go up the neck (e.g. barre chords) -->
+    <xsl:apply-templates select="." mode="skip_up"/>
   </xsl:template>    
+
+  <!-- newchord.xsl overrides this. -->
+  <xsl:template match="*" mode="skip_up"/>
 
   <xsl:template match="@*" mode="nut">
     <xsl:choose>
@@ -101,7 +106,6 @@
       <xsl:otherwise/>
     </xsl:choose>
   </xsl:template>
-
 
   <xsl:template match="fret">
     <xsl:param name="fret" select="@number"/>

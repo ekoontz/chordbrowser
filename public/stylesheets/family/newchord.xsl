@@ -71,6 +71,28 @@
     </select>
   </xsl:template>
 
+  <xsl:template match="edit/chord/fret" mode="skip_up">
+    <tr>
+      <th/>
+      <td colspan="2" style="text-align:right">
+	fret: 
+      </td>
+      <td colspan="4">
+	<select>
+	  <option/>
+	  <option>1</option>
+	  <option>2</option>
+	  <option>3</option>
+	  <option>4</option>
+	  <option>5</option>
+	  <option>6</option>
+	  <option>7</option>
+	  <option>8</option>
+	</select>
+      </td>
+    </tr>
+  </xsl:template>
+
   <xsl:template match="edit/chord/fret/@*" mode="fret">
     <select name="fret[{../@number}][{name()}]">
       <option/>
