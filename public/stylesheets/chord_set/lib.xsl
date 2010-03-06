@@ -34,15 +34,22 @@
 	<a href="/chord_set/view/{@id}"><xsl:value-of select="@name"/></a>
       </td>
       <td>
-	<form>
-	  <div>
-	    <form method="post" action="/chord_set/delete/{@id}">
-	      <div style="float:right">
-		<input onclick="if (confirm('Delete this set ({@name})?')) submit(); else return false;" type="submit" value="Delete"/>
+	<xsl:choose>
+	  <xsl:when test="$current_user">
+	    <form>
+	      <div>
+		<form method="post" action="/chord_set/delete/{@id}">
+		  <div style="float:right">
+		    <input onclick="if (confirm('Delete this set ({@name})?')) submit(); else return false;" type="submit" value="Delete"/>
+		  </div>
+		</form>
 	      </div>
 	    </form>
-	  </div>
-	</form>
+	  </xsl:when>
+	  <xsl:otherwise>
+	    <xsl:text> </xsl:text>
+	  </xsl:otherwise>
+	</xsl:choose>
       </td>
     </tr>
   </xsl:template>

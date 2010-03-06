@@ -17,9 +17,11 @@
       <div class="chords">
 	<xsl:apply-templates select="ancestor::chord_sets/chords"/>
       </div>
-      <div style="float:left;width:40%;margin:1em;">
-	<a href="/chord_set/view_with_add/{@id}">Add chords to this set</a>
-      </div>
+      <xsl:if test="$current_user">
+	<div style="float:left;width:40%;margin:1em;">
+	  <a href="/chord_set/view_with_add/{@id}">Add chords to this set</a>
+	</div>
+      </xsl:if>
     </div>
   </xsl:template>
 

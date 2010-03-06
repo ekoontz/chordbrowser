@@ -12,9 +12,11 @@
 
   <xsl:template match="chord_sets">
     <xsl:apply-templates select="." mode="view_in_index"/>
-    <div style="float:left">
-      <a href="/chord_set/new">add a new set</a>
-    </div>
+    <xsl:if test="$current_user">
+      <div style="float:left">
+	<a href="/chord_set/new">add a new set</a>
+      </div>
+    </xsl:if>
   </xsl:template>
 
   <xsl:template match="/chord_sets" mode="menu">
