@@ -11,6 +11,7 @@
   <xsl:include href="public/stylesheets/chordbrowser.xsl"/>
   <xsl:include href="public/stylesheets/chord.xsl"/>
   <xsl:include href="public/stylesheets/family/view_no_includes.xsl"/>
+  <xsl:include href="public/stylesheets/chord/edit.xsl"/>
 
   <xsl:template match="/">
     <xsl:apply-templates select="." mode="page"/>
@@ -43,9 +44,6 @@
 	  <input id="chord_name" name="name" size="4"/>
 	</div>
 	
-	<xsl:apply-templates select="ancestor::families/chord_attributes" 
-			     mode="checkboxes"/>
-	
 	<div style="float:left;">
 	  <xsl:apply-templates select="../edit/chord"/>
 	</div>
@@ -56,47 +54,16 @@
     </form>
   </xsl:template>
 
-  <!-- first fret's position is a dropdown so you can specify an
-       'up-the-neck' chord. -->
-  <xsl:template match="edit/chord/fret[2]" mode="fret_number">
-    <xsl:param name="fret" select="@number"/>
-    <select name="offset">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-    </select>
+  <xsl:template match="edit/chord/fret[@number='1']" mode="fret_number">
+    <xsl:apply-templates select="." mode="edit_fret_number"/>
   </xsl:template>
 
-  <!-- FIXME: refactor against chord-standalone.xsl. -->
-  <xsl:template match="edit/chord/fret/@*" mode="nut">
-    <select name="fret[nut][{name()}]]">
-      <option/>
-      <option>
-	<xsl:if test=". = 'x'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>x</option>
-      <option value="open">
-	<xsl:if test=". = 'open'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>o</option>
-    </select>
+  <xsl:template match="edit/chord/fret[@number='nut']/@*" mode="nut">
+    <xsl:apply-templates select="." mode="edit_nut"/>
   </xsl:template>
 
   <xsl:template match="edit/chord/fret/@*" mode="fret">
-    <select name="fret[{../@number}][{name()}]">
-      <option/>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </select>
+    <xsl:apply-templates select="." mode="edit_fret"/>
   </xsl:template>
-
-  <xsl:template match="edit"/>
 
 </xsl:stylesheet>

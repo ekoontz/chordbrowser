@@ -9,6 +9,7 @@
 
   <xsl:include href="public/stylesheets/chordbrowser.xsl"/>
   <xsl:include href="public/stylesheets/chord.xsl"/>
+  <xsl:include href="public/stylesheets/chord/edit.xsl"/>
 
   <xsl:param name="edit_chord"/>
 
@@ -60,69 +61,14 @@
     </form>
   </xsl:template>
 
-
-  <!-- first fret's position is a dropdown so you can specify an
-       'up-the-neck' chord. -->
-  <xsl:template match="chord/fret[1]" mode="fret_number">
-    <xsl:param name="fret" select="@number"/>
-    <select name="offset">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-    </select>
+  <xsl:template match="chord/fret[@number='nut']/@*" mode="nut">
+    <xsl:apply-templates select="." mode="edit_nut"/>
   </xsl:template>
 
-
-  <!-- FIXME: refactor all of the following templates 
-       below with public/stylesheets/family/newchord.xsl.
-       (match="edit/chord/fret/@*" mode="nut") -->
-  <xsl:template match="chord/fret/@*" mode="nut">
-    <select name="fret[nut][{name()}]]">
-      <option/>
-      <option>
-	<xsl:if test=". = 'x'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>x</option>
-      <option value="open">
-	<xsl:if test=". = 'open'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>o</option>
-    </select>
+  <xsl:template match="chord/fret[@number='1']" mode="fret_number">
+    <xsl:apply-templates select="." mode="edit_fret_number"/>
   </xsl:template>
 
-  <xsl:template match="chord/fret/@*" mode="fret">
-    <select name="fret[{../@number}][{name()}]">
-      <option/>
-      <option value="1">
-	<xsl:if test=". = '1'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>
-	1
-      </option>
-      <option value="2">
-	<xsl:if test=". = '2'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>
-	2
-      </option>
-      <option value="3">
-	<xsl:if test=". = '3'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>
-	3
-      </option>
-      <option value="4">
-	<xsl:if test=". = '4'">
-	  <xsl:attribute name="selected">selected</xsl:attribute>
-	</xsl:if>
-	4
-      </option>
-    </select>
-  </xsl:template>
 
 </xsl:stylesheet>
+

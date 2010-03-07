@@ -30,6 +30,10 @@
     <link rel="stylesheet" href="/stylesheets/chord.css" type="text/css"/>
   </xsl:template>
 
+  <xsl:template match="*" mode="script">
+    <script type="text/javascript" src="/javascripts/chordbrowser.js"></script>
+  </xsl:template>
+
   <xsl:template match="*" mode="body">
     <body>
       <div class="header">

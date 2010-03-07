@@ -63,8 +63,8 @@
         }
       }
     </script>
+    <xsl:apply-templates select="." mode="app_scripts"/>
   </xsl:template>
-
 
   <xsl:template match="*" mode="external_css">
     <link rel="stylesheet" href="/stylesheets/page.css" type="text/css" media="screen"/>
