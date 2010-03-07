@@ -60,6 +60,24 @@
     </form>
   </xsl:template>
 
+
+  <!-- first fret's position is a dropdown so you can specify an
+       'up-the-neck' chord. -->
+  <xsl:template match="chord/fret[1]" mode="fret_number">
+    <xsl:param name="fret" select="@number"/>
+    <select name="offset">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+    </select>
+  </xsl:template>
+
+
   <!-- FIXME: refactor all of the following templates 
        below with public/stylesheets/family/newchord.xsl.
        (match="edit/chord/fret/@*" mode="nut") -->
