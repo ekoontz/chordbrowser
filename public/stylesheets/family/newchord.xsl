@@ -56,6 +56,22 @@
     </form>
   </xsl:template>
 
+  <!-- first fret's position is a dropdown so you can specify an
+       'up-the-neck' chord. -->
+  <xsl:template match="edit/chord/fret[2]" mode="fret_number">
+    <xsl:param name="fret" select="@number"/>
+    <select name="offset">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+    </select>
+  </xsl:template>
+
   <!-- FIXME: refactor against chord-standalone.xsl. -->
   <xsl:template match="edit/chord/fret/@*" mode="nut">
     <select name="fret[nut][{name()}]]">
@@ -69,28 +85,6 @@
 	  <xsl:attribute name="selected">selected</xsl:attribute>
 	</xsl:if>o</option>
     </select>
-  </xsl:template>
-
-  <xsl:template match="edit/chord/fret" mode="skip_up">
-    <tr>
-      <th/>
-      <td colspan="2" style="text-align:right">
-	fret: 
-      </td>
-      <td colspan="4">
-	<select>
-	  <option/>
-	  <option>1</option>
-	  <option>2</option>
-	  <option>3</option>
-	  <option>4</option>
-	  <option>5</option>
-	  <option>6</option>
-	  <option>7</option>
-	  <option>8</option>
-	</select>
-      </td>
-    </tr>
   </xsl:template>
 
   <xsl:template match="edit/chord/fret/@*" mode="fret">

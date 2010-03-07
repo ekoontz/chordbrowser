@@ -19,7 +19,8 @@
       </div>
       <xsl:if test="$current_user">
 	<div style="float:left;width:40%;margin:1em;">
-	  <a href="/chord_set/view_with_add/{@id}">Add chords to this set</a>
+	  <a href="/chord_set/view_with_add/{@id}">
+	    Add <xsl:if test="ancestor::chord_sets/chords/chord">more</xsl:if>  chords to this set</a>
 	</div>
       </xsl:if>
     </div>

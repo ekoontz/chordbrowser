@@ -62,7 +62,9 @@
 	    <xsl:apply-templates select="fret[@number = 'nut']"/>
 	  </thead>
 	  <tbody class="chord">
-	    <xsl:apply-templates select="fret[@number = '1']"/>
+	    <!-- some chords go up the neck (e.g. barre chords) -->
+	    <xsl:apply-templates select="." mode="skip_up"/>
+ 	    <xsl:apply-templates select="fret[@number = '1']"/>
 	    <xsl:apply-templates select="fret[@number &gt; '1']"/>
 	  </tbody>
 	</table>
@@ -92,8 +94,6 @@
 	<xsl:apply-templates select="@e" mode="nut"/>
       </th>
     </tr>
-    <!-- some chords go up the neck (e.g. barre chords) -->
-    <xsl:apply-templates select="." mode="skip_up"/>
   </xsl:template>    
 
   <!-- newchord.xsl overrides this. -->
@@ -108,40 +108,50 @@
   </xsl:template>
 
   <xsl:template match="fret">
-    <xsl:param name="fret" select="@number"/>
+    <xsl:variable name="fret" select="@number"/>
     <tr>
-      <th><xsl:value-of select="$fret"/></th>
-      <td>
-	<xsl:apply-templates select="@e_low" mode="fret">
-	  <xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
-	</xsl:apply-templates>
-      </td>
-      <td>
-	<xsl:apply-templates select="@a" mode="fret">
-	  <xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
-	</xsl:apply-templates>
-      </td>
-      <td>
-	<xsl:apply-templates select="@d" mode="fret">
-	  <xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
-	</xsl:apply-templates>
-      </td>
-      <td>
-	<xsl:apply-templates select="@g" mode="fret">
-	  <xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
-	</xsl:apply-templates>
-      </td>
-      <td>
-	<xsl:apply-templates select="@b" mode="fret">
-	  <xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
-	</xsl:apply-templates>
-      </td>
-      <td>
-	<xsl:apply-templates select="@e" mode="fret">
-	  <xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
-	</xsl:apply-templates>
-      </td>
+      <th><xsl:apply-templates select="." mode="fret_number"/></th>
+      <xsl:apply-templates select="." mode="fret_columns"/>
     </tr>
+  </xsl:template>
+  
+  <xsl:template match="*" mode="fret_number">
+    <xsl:variable name="fret" select="@number"/>
+    <xsl:value-of select="$fret"/>
+  </xsl:template>
+
+  <xsl:template match="*" mode="fret_columns">
+    <xsl:variable name="fret" select="@number"/>
+    <td>
+      <xsl:apply-templates select="@e_low" mode="fret">
+	<xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
+      </xsl:apply-templates>
+    </td>
+    <td>
+      <xsl:apply-templates select="@a" mode="fret">
+	<xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
+      </xsl:apply-templates>
+    </td>
+    <td>
+      <xsl:apply-templates select="@d" mode="fret">
+	<xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
+      </xsl:apply-templates>
+    </td>
+    <td>
+      <xsl:apply-templates select="@g" mode="fret">
+	<xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
+      </xsl:apply-templates>
+    </td>
+    <td>
+      <xsl:apply-templates select="@b" mode="fret">
+	<xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
+      </xsl:apply-templates>
+    </td>
+    <td>
+      <xsl:apply-templates select="@e" mode="fret">
+	<xsl:with-param name="fret"><xsl:value-of select="$fret"/></xsl:with-param>
+      </xsl:apply-templates>
+    </td>
   </xsl:template>
   
   <xsl:template match="@*" mode="fret">
