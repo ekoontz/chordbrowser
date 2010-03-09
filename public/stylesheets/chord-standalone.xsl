@@ -69,6 +69,10 @@
     <xsl:apply-templates select="." mode="edit_fret_number"/>
   </xsl:template>
 
+  <xsl:template match="@*" mode="fret">
+    <xsl:param name="fret"/>
+    <xsl:apply-templates select="." mode="edit_fret"/>
+  </xsl:template>
 
 </xsl:stylesheet>
 
