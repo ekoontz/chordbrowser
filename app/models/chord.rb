@@ -19,6 +19,7 @@ class Chord < ActiveRecord::Base
 
     xml.chord(:name => name,
               :family => family,
+              :fret_offset => fret_offset,
               :family_id => family_id,
               :id => id
               ) {

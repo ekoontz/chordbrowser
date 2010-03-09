@@ -7,8 +7,8 @@
        'up-the-neck' chord. -->
   <xsl:template match="chord/fret[@number='1']" mode="edit_fret_number">
     <xsl:param name="fret" select="@number"/>
-    <select name="offset"
-	    onchange="renumber_frets()">
+    <select name="fret_offset"
+	    onchange="renumber_frets(this)">
       <option>1</option>
       <option>2</option>
       <option>3</option>

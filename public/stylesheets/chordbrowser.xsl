@@ -31,6 +31,7 @@
   </xsl:template>
 
   <xsl:template match="*" mode="script">
+    <script type="text/javascript" src="/javascripts/prototype.js"></script>
     <script type="text/javascript" src="/javascripts/chordbrowser.js"></script>
   </xsl:template>
 

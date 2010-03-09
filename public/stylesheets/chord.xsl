@@ -62,8 +62,6 @@
 	    <xsl:apply-templates select="fret[@number = 'nut']"/>
 	  </thead>
 	  <tbody class="chord">
-	    <!-- some chords go up the neck (e.g. barre chords) -->
-	    <xsl:apply-templates select="." mode="skip_up"/>
  	    <xsl:apply-templates select="fret[@number = '1']"/>
 	    <xsl:apply-templates select="fret[@number &gt; '1']"/>
 	  </tbody>
@@ -110,14 +108,24 @@
   <xsl:template match="fret">
     <xsl:variable name="fret" select="@number"/>
     <tr>
-      <th><xsl:apply-templates select="." mode="fret_number"/></th>
+      <th class="fret_num">
+	<xsl:apply-templates select="." mode="fret_number"/>
+      </th>
       <xsl:apply-templates select="." mode="fret_columns"/>
     </tr>
   </xsl:template>
   
   <xsl:template match="*" mode="fret_number">
     <xsl:variable name="fret" select="@number"/>
-    <xsl:value-of select="$fret"/>
+    <xsl:variable name="offset" select="ancestor::chord/@fret_offset"/>
+    <xsl:choose>
+      <xsl:when test="$offset &gt; 0">
+	<xsl:value-of select="$fret + $offset - 1"/>
+      </xsl:when>
+      <xsl:otherwise>
+	<xsl:value-of select="$fret"/>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="*" mode="fret_columns">

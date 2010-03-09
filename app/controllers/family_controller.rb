@@ -37,6 +37,7 @@ class FamilyController < ApplicationController
       newchord = Chord.new
       newchord.family = self.params['family']
       newchord.name = self.params['name']
+      newchord.fret_offset = self.params['fret_offset']
       newchord.save
 
       ["nut",1,2,3,4].each do |fret|
