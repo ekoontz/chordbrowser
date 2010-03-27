@@ -14,7 +14,7 @@
   <xsl:template match="/chord_sets" mode="menu">
     <h2><a href="/family/">&doubleleft; Families</a></h2>
     <h2><a href="/chord_set/">&doubleleft; Sets</a></h2>
-    <h2><a href="/chord_set/{chord_set[1]/@id}">&doubleleft; Set: <xsl:value-of select="chord_set[1]/@name"/></a></h2>
+    <h2><a href="/chord_set/view/{chord_set[1]/@id}">&doubleleft; Set: <xsl:value-of select="chord_set[1]/@name"/></a></h2>
     <h2>Add a chord to this set</h2>
   </xsl:template>
 
